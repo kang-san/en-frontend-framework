@@ -11,8 +11,8 @@ export const { styled, theme, globalCss, keyframes, createTheme } = createStitch
       ...blackA,
 
       ...contrast,
-    }
-  }
+    },
+  },
 });
 
 export const lightTheme = createTheme('light-theme', {

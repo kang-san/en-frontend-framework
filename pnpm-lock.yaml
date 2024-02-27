@@ -11,6 +11,9 @@ importers:
       '@stitches/react':
         specifier: ^1.2.8
         version: 1.2.8(react@18.2.0)
+      stitches:
+        specifier: ^1.2.11
+        version: 1.2.11
     devDependencies:
       '@types/node':
         specifier: ^20.11.20
@@ -2155,6 +2158,10 @@ packages:
   /source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
+    dev: false
+
+  /stitches@1.2.11:
+    resolution: {integrity: sha512-s+Ms7C05YrzDXp/aiclV9eW/6B4xiSVWrY88Vyiac2GqkDwFD2OB5TBRDr2M9hRVMpz7RR5PsGkW1KhPo+eIgg==}
     dev: false
 
   /streamsearch@1.1.0:
