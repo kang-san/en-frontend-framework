@@ -12,10 +12,9 @@
   "devDependencies": {
     "@types/node": "^20.11.20",
     "@types/react": "^18.2.57",
-    "typescript": "^5.3.3",
-    "@stitches/react": "^1.2.11"
-
+    "typescript": "^5.3.3"
   },
   "dependencies": {
+    "stitches": "^1.2.11"
   }
 }
