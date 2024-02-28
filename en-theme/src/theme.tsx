@@ -1,6 +1,6 @@
 'use client'
 
-import { ThemeImpl } from "./theme-option"
+import { ThemeImpl } from "./theme-styles"
 
 export const theme = () => {
   return (

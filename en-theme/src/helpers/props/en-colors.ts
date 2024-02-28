@@ -1,16 +1,16 @@
 // prettier-ignore
-const radixColorScalesRegular = ['tomato', 'red', 'ruby', 'crimson', 'pink', 'plum', 'purple', 'violet', 'iris', 'indigo', 'blue', 'cyan', 'teal', 'jade', 'green', 'grass', 'brown', 'orange' ] as const;
-const radixColorScalesBright = ['sky', 'mint', 'lime', 'yellow', 'amber'] as const;
-const radixColorScalesMetal = ['gold', 'bronze'] as const;
+const enColorScalesRegular = ['tomato', 'red', 'ruby', 'crimson', 'pink', 'plum', 'purple', 'violet', 'iris', 'indigo', 'blue', 'cyan', 'teal', 'jade', 'green', 'grass', 'brown', 'orange' ] as const;
+const enColorScalesBright = ['sky', 'mint', 'lime', 'yellow', 'amber'] as const;
+const enColorScalesMetal = ['gold', 'bronze'] as const;
 // prettier-ignore
-const radixColorScales = [...radixColorScalesRegular, ...radixColorScalesBright, ...radixColorScalesMetal] as const;
-const radixGrayScalePure = 'gray' as const;
-const radixGrayScalesDesaturated = ['mauve', 'slate', 'sage', 'olive', 'sand'] as const;
-const radixGrayScales = [radixGrayScalePure, ...radixGrayScalesDesaturated] as const;
+const enColorScales = [...enColorScalesRegular, ...enColorScalesBright, ...enColorScalesMetal] as const;
+const enGrayScalePure = 'gray' as const;
+const enGrayScalesDesaturated = ['mauve', 'slate', 'sage', 'olive', 'sand'] as const;
+const enGrayScales = [enGrayScalePure, ...enGrayScalesDesaturated] as const;
 
-function radixGetMatchingGrayScale(
-  colorScale: (typeof radixColorScales)[number]
-): (typeof radixGrayScales)[number] {
+function enGetMatchingGrayScale(
+  colorScale: (typeof enColorScales)[number]
+): (typeof enGrayScales)[number] {
   switch (colorScale) {
     case 'tomato':
     case 'red':
@@ -46,14 +46,14 @@ function radixGetMatchingGrayScale(
 }
 
 export {
-  radixColorScalesRegular,
-  radixColorScalesBright,
-  radixColorScalesMetal,
-  radixColorScales,
+  enColorScalesRegular,
+  enColorScalesBright,
+  enColorScalesMetal,
+  enColorScales,
   //
-  radixGrayScalePure,
-  radixGrayScalesDesaturated,
-  radixGrayScales,
+  enGrayScalePure,
+  enGrayScalesDesaturated,
+  enGrayScales,
   //
-  radixGetMatchingGrayScale,
+  enGetMatchingGrayScale,
 };
