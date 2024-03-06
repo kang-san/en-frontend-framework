@@ -1,30 +1,34 @@
+type Radii = {
+  radiusFactor: number;
+  radiusFull: string;
+  radiusThumb: string;
+};
 
-
-export const radiiNone = {
+export const radiiNone: Radii = {
   radiusFactor: 0,
   radiusFull: '0px',
   radiusThumb: '0.5px',
 }
 
-export const radiiSmall = {
+export const radiiSmall: Radii = {
   radiusFactor: 0.75,
   radiusFull: '0px',
   radiusThumb: '0.5px',
 }
 
-export const radiiMedium = {
+export const radiiMedium: Radii = {
   radiusFactor: 1,
   radiusFull: '0px',
   radiusThumb: '9999px',
 }
 
-export const radiiLarge = {
+export const radiiLarge: Radii = {
   radiusFactor: 1.5,
   radiusFull: '0px',
   radiusThumb: '9999px',
 }
 
-export const radiiFull = {
+export const radiiFull: Radii = {
   radiusFactor: 1.5,
   radiusFull: '9999px',
   radiusThumb: '9999px',
