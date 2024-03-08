@@ -146,13 +146,11 @@ export const { styled, theme, globalCss, keyframes, createTheme } = createStitch
       grayA12: lightColor.mauveA12,
         
   
-      //Focus, selection, and autofill 
-  
       //semantic color
       colorBackground: whiteA.whiteA1,
       colorOverlay: blackA.blackA6,
       colorPanelSolid: whiteA.whiteA1,
-      colorPanelTraslucent: whiteA.whiteA8,
+      colorPanelTranslucent: whiteA.whiteA8,
       colorSurface: whiteA.whiteA9,
 
     }

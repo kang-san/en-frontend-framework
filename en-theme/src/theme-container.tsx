@@ -226,7 +226,7 @@ export const ThemeImpl = styled('div', {
         panel: theme.colors.colorPanelSolid,
       },
       translucent: {
-        panel: theme.colors.colorPanelTraslucent,
+        panel: theme.colors.colorPanelTranslucent,
       },
     },
   },

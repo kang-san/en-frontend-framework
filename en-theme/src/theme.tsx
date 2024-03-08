@@ -25,6 +25,13 @@ interface ThemeProps {
   children: React.ReactNode;
 }
 
+const [p3Supported, setP3Supported] = useState(false);
+
+useEffect(() => {
+  // 컴포넌트 마운트 시 Display P3 색상과 @media 쿼리 지원 여부를 검사
+  setP3Supported(supportsP3ColorAndMediaQuery());
+}, []);
+
 export const Theme = ({ 
   isRoot = true,
   hasBackground = false,
