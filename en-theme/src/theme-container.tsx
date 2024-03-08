@@ -1,42 +1,233 @@
 import { styled } from '@stitches/react';
 import { grass, gray, indigo } from './primitive-color';
+import { tomato, mauve, slate, purple, violet, jade, yellow } from './primitive-color/light';
+import { translucent } from './styles/tokens/colors';
+import { theme } from './themes';
+
+
 
 export const ThemeImpl = styled('div', {
 
+  // variant tokens
   variants: {
     hasBackground: {
-      true: { backgroundColor:'$grass4' },
-      false: { backgroundColor: 'transparent' },
-    },
-    appearance: {
-      light: { color: 'black', backgroundColor: 'white' },
-      dark: { color: 'white', backgroundColor: 'black' },
-      inherit: {}, // 'inherit'의 경우, CSS 상속을 사용하거나 기본값을 설정하지 않음
+      true: {
+        background: theme.colors.colorBackground, 
+      },
+      false: {
+        background: 'none',
+      },
     },
     accentColor: {
-      indigo: { borderColor: '$indigo4' }, 
-      gray: { borderColor: '$gray4' },
-    },
-    grayColor: {
-      auto: { color: '$gray5'},
+      tomato: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      red: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      ruby: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      crimson: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      pink: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      plum: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      purple: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      violet: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },  
+      iris: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      indigo: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      blue: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      cyan: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      teal: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      jade: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      green: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      grass: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      orange: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      brown: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      sky: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      mint: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      lime: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      yellow: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      amber: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      gold: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      bronze: {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      gray: {},
     },
     panelBackground: {
-      solid: { backdropFilter: 'none' },
-      translucent: { backdropFilter: 'blur(10px)' },
-    },
-    radius: {
-      none: { borderRadius: '0px' },
-      small: { borderRadius: '4px' },
-      medium: { borderRadius: '8px' },
-      large: { borderRadius: '16px' },
-      full: { borderRadius: '9999px' },
-    },
-    scaling: {
-      '90%': { transform: 'scale(0.9)' },
-      '95%': { transform: 'scale(0.95)' },
-      '100%': { transform: 'scale(1.0)' },
-      '105%': { transform: 'scale(1.05)' },
-      '110%': { transform: 'scale(1.1)' },
+      solid: {
+        panel: theme.colors.colorPanelSolid,
+      },
+      translucent: {
+        panel: theme.colors.colorPanelTraslucent,
+      },
     },
   },
-});
+})

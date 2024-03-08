@@ -3,9 +3,24 @@ import { fonts } from '../styles/fonts';
 import { lightColor, darkColor, whiteA, blackA, contrast, surface, translucent } from '../styles/tokens/colors';
 import { radiiNone, radiiSmall, radiiMedium, radiiLarge, radiiFull } from 'src/styles/tokens/radii';
 
+// P3 색상과 미디어 쿼리 지원 여부를 검사하는 함수 >> util에 이동 예정
+// Display P3 색상과 @media (color-gamut: p3) 지원 여부 확인
+const supportsP3ColorAndMediaQuery = () => {
+  if (typeof window !== "undefined") {
+    const p3ColorSupported = CSS.supports('color', 'color(display-p3 1 1 1)');
+    const mediaQuerySupported = window.matchMedia('(color-gamut: p3)').matches;
+    return p3ColorSupported && mediaQuerySupported;
+  }
+  return false;
+};
+const useP3Colors = supportsP3ColorAndMediaQuery();
+
+
 export const { styled, theme, globalCss, keyframes, createTheme } = createStitches({
   theme: {
     colors: {
+      color: lightColor.gray12,
+
       //contrast color
       tomato9Contrast: contrast.tomato9Contrast,
       red9Contrast: contrast.red9Contrast,
@@ -35,87 +50,44 @@ export const { styled, theme, globalCss, keyframes, createTheme } = createStitch
       gray9Contrast: contrast.gray9Contrast,
       //transparency
 
-      /////surface color
-      graySurface: '#ffffffcc',
-      mauveSurface: '#ffffffcc',
-      slateSurface: '#ffffffcc',
-      sageSurface: '#ffffffcc',
-      oliveSurface: '#ffffffcc',
-      sandSurface: '#ffffffcc',
-      tomatoSurface: '#fff6f5cc',
-      redSurface: '#fff5f5cc',
-      rubySurface: '#fff5f6cc',
-      crimsonSurface: '#fef5f8cc',
-      pinkSurface: '#fef5facc',
-      plumSurface: '#fdf5fdcc',
-      purpleSurface: '#faf5fecc',
-      violetSurface: '#f9f6ffcc',
-      irisSurface: '#f6f6ffcc',
-      indigoSurface: '#f5f8ffcc',
-      blueSurface: '#f1f9ffcc',
-      cyanSurface: '#eff9facc',
-      tealSurface: '#f0faf8cc',
-      jadeSurface: '#f1faf5cc',
-      greenSurface: '#f1faf4cc',
-      grassSurface: '#f3faf3cc',
-      brownSurface: '#fbf8f4cc',
-      bronzeSurface: '#fdf5f3cc',
-      goldSurface: '#f9f8efcc',
-      skySurface: '#eef9fdcc',
-      mintSurface: '#effaf8cc',
-      limeSurface: '#f6f9f0cc',
-      yellowSurface: '#fefbe4cc',
-      amberSurface: '#fefae4cc',
-      orangeSurface: '#fff5e9cc',
-      // surface color P3
-      grayP3Surface: 'color(display-p3 1 1 1 / 0.8)',
-      mauveP3Surface: 'color(display-p3 1 1 1 / 0.8)',
-      slateP3Surface: 'color(display-p3 1 1 1 / 0.8)',
-      sageP3Surface: 'color(display-p3 1 1 1 / 0.8)',
-      oliveP3Surface: 'color(display-p3 1 1 1 / 0.8)',
-      sandP3Surface: 'color(display-p3 1 1 1 / 0.8)',
-      tomatoP3Surface: 'color(display-p3 0.9922 0.9647 0.9608 / 0.8)',
-      redP3Surface: 'color(display-p3 0.9961 0.9647 0.9647 / 0.8)',
-      rubyP3Surface: 'color(display-p3 0.9961 0.9647 0.9647 / 0.8)',
-      crimsonP3Surface: 'color(display-p3 0.9922 0.9608 0.9725 / 0.8)',
-      pinkP3Surface: 'color(display-p3 0.9922 0.9608 0.9804 / 0.8)',
-      plumP3Surface: 'color(display-p3 0.9843 0.9647 0.9843 / 0.8)',
-      purpleP3Surface: 'color(display-p3 0.9804 0.9647 0.9922 / 0.8)',
-      violetP3Surface: 'color(display-p3 0.9725 0.9647 0.9961 / 0.8)',
-      irisP3Surface: 'color(display-p3 0.9647 0.9647 0.9961 / 0.8)',
-      indigoP3Surface: 'color(display-p3 0.9647 0.9725 0.9961 / 0.8)',
-      blueP3Surface: 'color(display-p3 0.9529 0.9765 0.9961 / 0.8)',
-      cyanP3Surface: 'color(display-p3 0.9412 0.9765 0.9804 / 0.8)',
-      tealP3Surface: 'color(display-p3 0.9451 0.9804 0.9725 / 0.8)',
-      jadeP3Surface: 'color(display-p3 0.9529 0.9804 0.9608 / 0.8)',
-      greenP3Surface: 'color(display-p3 0.9569 0.9804 0.9608 / 0.8)',
-      grassP3Surface: 'color(display-p3 0.9569 0.9804 0.9569 / 0.8)',
-      brownP3Surface: 'color(display-p3 0.9843 0.9725 0.9569 / 0.8)',
-      bronzeP3Surface: 'color(display-p3 0.9843 0.9608 0.9529 / 0.8)',
-      goldP3Surface: 'color(display-p3 0.9765 0.9725 0.9412 / 0.8)',
-      skyP3Surface: 'color(display-p3 0.9412 0.9765 0.9843 / 0.8)',
-      mintP3Surface: 'color(display-p3 0.9451 0.9804 0.9725 / 0.8)',
-      limeP3Surface: 'color(display-p3 0.9725 0.9765 0.9412 / 0.8)',
-      yellowP3Surface: 'color(display-p3 0.9961 0.9922 0.902 / 0.8)',
-      amberP3Surface: 'color(display-p3 0.9922 0.9843 0.902 / 0.8)',
-      orangeP3Surface: 'color(display-p3 0.9961 0.9608 0.9176 / 0.8)',
-  
-      /////Gray 2 equivalent for translucent panels
-      gray2Translucent: translucent.gray2Translucent,
-      mauve2Translucent: translucent.mauve2Translucent,
-      slate2Translucent: translucent.slate2Translucent,
-      sage2Translucent: translucent.sage2Translucent,
-      olive2Translucent: translucent.olive2Translucent,
-      sand2Translucent: translucent.sand2Translucent,
-      // P3 translucent panels
-      gray2P3Translucent: 'color(display-p3 0.1137 0.1137 0.1137 / 0.7)',
-      mauve2P3Translucent: 'color(display-p3 0.1176 0.1137 0.1176 / 0.7)',
-      slate2P3Translucent: 'color(display-p3 0.1059 0.1137 0.1176 / 0.7)',
-      sage2P3Translucent: 'color(display-p3 0.102 0.1137 0.1059 / 0.7)',
-      olive2P3Translucent: 'color(display-p3 0.1059 0.1137 0.102 / 0.7)',
-      sand2P3Translucent: 'color(display-p3 0.1137 0.1137 0.1059 / 0.7)',
+      /////surface color & P3 surface color
+      graySurface: useP3Colors ? 'color(display-p3 1 1 1 / 0.8)' : '#ffffffcc',
+      mauveSurface: useP3Colors ? 'color(display-p3 1 1 1 / 0.8)' : '#ffffffcc',
+      slateSurface: useP3Colors ? 'color(display-p3 1 1 1 / 0.8)' : '#ffffffcc',
+      sageSurface: useP3Colors ? 'color(display-p3 1 1 1 / 0.8)' : '#ffffffcc',
+      oliveSurface: useP3Colors ? 'color(display-p3 1 1 1 / 0.8)' : '#ffffffcc',
+      sandSurface: useP3Colors ? 'color(display-p3 1 1 1 / 0.8)' : '#ffffffcc',
+      tomatoSurface: useP3Colors ? 'color(display-p3 0.9922 0.9647 0.9608 / 0.8)' : '#fff6f5cc',
+      redSurface: useP3Colors ? 'color(display-p3 0.9961 0.9647 0.9647 / 0.8)' : '#fff5f5cc',
+      rubySurface: useP3Colors ? 'color(display-p3 0.9961 0.9647 0.9647 / 0.8)' : '#fff5f6cc',
+      crimsonSurface: useP3Colors ? 'color(display-p3 0.9922 0.9608 0.9725 / 0.8)' : '#fef5f8cc',
+      pinkSurface: useP3Colors ? 'color(display-p3 0.9922 0.9608 0.9804 / 0.8)' : '#fef5facc',
+      plumSurface: useP3Colors ? 'color(display-p3 0.9843 0.9647 0.9843 / 0.8)' : '#fdf5fdcc',
+      purpleSurface: useP3Colors ? 'color(display-p3 0.9804 0.9647 0.9922 / 0.8)' : '#faf5fecc',
+      violetSurface: useP3Colors ? 'color(display-p3 0.9725 0.9647 0.9961 / 0.8)' : '#f9f6ffcc',
+      irisSurface: useP3Colors ? 'color(display-p3 0.9647 0.9647 0.9961 / 0.8)' : '#f6f6ffcc',
+      indigoSurface: useP3Colors ? 'color(display-p3 0.9647 0.9725 0.9961 / 0.8)' : '#f5f8ffcc',
+      blueSurface: useP3Colors ? 'color(display-p3 0.9529 0.9765 0.9961 / 0.8)' : '#f1f9ffcc',
+      cyanSurface: useP3Colors ? 'color(display-p3 0.9412 0.9765 0.9804 / 0.8)' : '#eff9facc',
+      tealSurface: useP3Colors ? 'color(display-p3 0.9451 0.9804 0.9725 / 0.8)' : '#f0faf8cc',
+      jadeSurface: useP3Colors ? 'color(display-p3 0.9529 0.9804 0.9608 / 0.8)' : '#f1faf5cc',
+      greenSurface: useP3Colors ? 'color(display-p3 0.9569 0.9804 0.9608 / 0.8)' : '#f1faf4cc',
+      grassSurface: useP3Colors ? 'color(display-p3 0.9569 0.9804 0.9569 / 0.8)' : '#f3faf3cc',
+      brownSurface: useP3Colors ? 'color(display-p3 0.9843 0.9725 0.9569 / 0.8)' : '#fbf8f4cc',
+      bronzeSurface: useP3Colors ? 'color(display-p3 0.9843 0.9608 0.9529 / 0.8)' : '#fdf5f3cc',
+      goldSurface: useP3Colors ? 'color(display-p3 0.9765 0.9725 0.9412 / 0.8)' : '#f9f8efcc',
+      skySurface: useP3Colors ? 'color(display-p3 0.9412 0.9765 0.9843 / 0.8)' : '#eef9fdcc',
+      mintSurface: useP3Colors ? 'color(display-p3 0.9451 0.9804 0.9725 / 0.8)' : '#effaf8cc',
+      limeSurface: useP3Colors ? 'color(display-p3 0.9725 0.9765 0.9412 / 0.8)' : '#f6f9f0cc',
+      yellowSurface: useP3Colors ? 'color(display-p3 0.9961 0.9922 0.902 / 0.8)' : '#fefbe4cc',
+      amberSurface: useP3Colors ? 'color(display-p3 0.9922 0.9843 0.902 / 0.8)' : '#fefae4cc',
+      orangeSurface: useP3Colors ? 'color(display-p3 0.9961 0.9608 0.9176 / 0.8)' : '#fff5e9cc',
+      
+      //transperant color
+      transparent: useP3Colors ? 'color(display-p3 0 0 0 / 0)' : 'rgb(0 0 0 / 0',
 
-      //////accent color
+
+      //////accent color theme를 위한 BASE
       //tomato
       colorSurfaceAccent: surface.tomatoSurface,
 
@@ -146,7 +118,7 @@ export const { styled, theme, globalCss, keyframes, createTheme } = createStitch
       accentA11: lightColor.tomatoA11,
       accentA12: lightColor.tomatoA12,
 
-      /////gray color
+      /////gray color theme를 위한 BASE
       gray1: lightColor.mauve1,
       gray2: lightColor.mauve2,
       gray3: lightColor.mauve3,
@@ -1178,87 +1150,47 @@ const sand = createTheme('gray-sand', {
 
 const darkTheme = createTheme('dark-theme', {
   colors: {
-    /////Gray 2 equivalent for translucent panels
-    gray2Translucent: '#1d1d1db3',
-    mauve2Translucent: '#1e1d1eb3',
-    slate2Translucent: '#1b1d1eb3',
-    sage2Translucent: '#1a1c1bb3',
-    olive2Translucent: '#1b1c1ab3',
-    sand2Translucent: '#1d1d1bb3',
-    // P3 translucent panels
-    gray2P3Translucent: 'color(display-p3 0.1137 0.1137 0.1137 / 0.7)',
-    mauve2P3Translucent: 'color(display-p3 0.1176 0.1137 0.1176 / 0.7)',
-    slate2P3Translucent: 'color(display-p3 0.1059 0.1137 0.1176 / 0.7)',
-    sage2P3Translucent: 'color(display-p3 0.102 0.1137 0.1059 / 0.7)',
-    olive2P3Translucent: 'color(display-p3 0.1059 0.1137 0.102 / 0.7)',
-    sand2P3Translucent: 'color(display-p3 0.1137 0.1137 0.1059 / 0.7)',
+  /////Gray 2 equivalent for translucent panels
+  gray2Translucent: useP3Colors ? 'color(display-p3 0.1137 0.1137 0.1137 / 0.7)' : translucent.gray2Translucent,
+  mauve2Translucent: useP3Colors ? 'color(display-p3 0.1176 0.1137 0.1176 / 0.7)' : translucent.mauve2Translucent,
+  slate2Translucent: useP3Colors ? 'color(display-p3 0.1059 0.1137 0.1176 / 0.7)' : translucent.slate2Translucent,
+  sage2Translucent: useP3Colors ? 'color(display-p3 0.102 0.1137 0.1059 / 0.7)' : translucent.sage2Translucent,
+  olive2Translucent: useP3Colors ? 'color(display-p3 0.1059 0.1137 0.102 / 0.7)' : translucent.olive2Translucent,
+  sand2Translucent: useP3Colors ? 'color(display-p3 0.1137 0.1137 0.1059 / 0.7)' : translucent.sand2Translucent,
 
-    /////surface color
-    graySurface: '#21212180',
-    mauveSurface: '#22212380',
-    slateSurface: '#1f212380',
-    sageSurface: '#1e201f80',
-    oliveSurface: '#1f201e80',
-    sandSurface: '#21212080',
-    tomatoSurface: '#2d191580',
-    redSurface: '#2f151780',
-    rubySurface: '#2b191d80',
-    crimsonSurface: '#2f151f80',
-    pinkSurface: '#31132980',
-    plumSurface: '#2f152f80',
-    purpleSurface: '#2b173580',
-    violetSurface: '#25193980',
-    irisSurface: '#1d1b3980',
-    indigoSurface: '#171d3b80',
-    blueSurface: '#11213d80',
-    cyanSurface: '#11252d80',
-    tealSurface: '#13272580',
-    jadeSurface: '#13271f80',
-    greenSurface: '#15251d80',
-    grassSurface: '#19231b80',
-    brownSurface: '#271f1b80',
-    bronzeSurface: '#27211d80',
-    goldSurface: '#25231d80',
-    skySurface: '#13233b80',
-    mintSurface: '#15272780',
-    limeSurface: '#1b211580',
-    yellowSurface: '#231f1380',
-    amberSurface: '#271f1380',
-    orangeSurface: '#271d1380',
-    //surface color P3
-    grayP3Surface: 'color(display-p3 0.1255 0.1255 0.1255 / 0.5)',
-    mauveP3Surface: 'color(display-p3 0.1333 0.1255 0.1333 / 0.5)',
-    slateP3Surface: 'color(display-p3 0.1176 0.1255 0.1333 / 0.5)',
-    sageP3Surface: 'color(display-p3 0.1176 0.1255 0.1176 / 0.5)',
-    oliveP3Surface: 'color(display-p3 0.1176 0.1255 0.1176 / 0.5)',
-    sandP3Surface: 'color(display-p3 0.1255 0.1255 0.1255 / 0.5)',
-    tomatoP3Surface: 'color(display-p3 0.1569 0.0941 0.0784 / 0.5)',
-    redP3Surface: 'color(display-p3 0.1647 0.0863 0.0863 / 0.5)',
-    rubyP3Surface: 'color(display-p3 0.1569 0.0941 0.1098 / 0.5)',
-    crimsonP3Surface: 'color(display-p3 0.1647 0.0863 0.1176 / 0.5)',
-    pinkP3Surface: 'color(display-p3 0.1725 0.0784 0.149 / 0.5)',
-    plumP3Surface: 'color(display-p3 0.1647 0.0863 0.1725 / 0.5)',
-    purpleP3Surface: 'color(display-p3 0.149 0.0941 0.1961 / 0.5)',
-    violetP3Surface: 'color(display-p3 0.1333 0.102 0.2118 / 0.5)',
-    irisP3Surface: 'color(display-p3 0.1098 0.102 0.2118 / 0.5)',
-    indigoP3Surface: 'color(display-p3 0.0941 0.1098 0.2196 / 0.5)',
-    blueP3Surface: 'color(display-p3 0.0706 0.1255 0.2196 / 0.5)',
-    cyanP3Surface: 'color(display-p3 0.0784 0.1412 0.1725 / 0.5)',
-    tealP3Surface: 'color(display-p3 0.0863 0.149 0.1412 / 0.5)',
-    jadeP3Surface: 'color(display-p3 0.0863 0.149 0.1176 / 0.5)',
-    greenP3Surface: 'color(display-p3 0.0941 0.1412 0.1098 / 0.5)',
-    grassP3Surface: 'color(display-p3 0.102 0.1333 0.102 / 0.5)',
-    brownP3Surface: 'color(display-p3 0.1412 0.1176 0.102 / 0.5)',
-    bronzeP3Surface: 'color(display-p3 0.1412 0.1255 0.1176 / 0.5)',
-    goldP3Surface: 'color(display-p3 0.1412 0.1333 0.1098 / 0.5)',
-    skyP3Surface: 'color(display-p3 0.0863 0.1333 0.2196 / 0.5)',
-    mintP3Surface: 'color(display-p3 0.0941 0.149 0.1412 / 0.5)',
-    limeP3Surface: 'color(display-p3 0.1098 0.1255 0.0784 / 0.5)',
-    yellowP3Surface: 'color(display-p3 0.1333 0.1176 0.0706 / 0.5)',
-    amberP3Surface: 'color(display-p3 0.1412 0.1176 0.0784 / 0.5)',
-    orangeP3Surface: 'color(display-p3 0.1412 0.1098 0.0706 / 0.5)',
 
-    //Focus, selection, and autofill 
+  /////surface color
+  graySurface: useP3Colors ? 'color(display-p3 0.1255 0.1255 0.1255 / 0.5)' : '#21212180',
+  mauveSurface: useP3Colors ? 'color(display-p3 0.1333 0.1255 0.1333 / 0.5)' : '#22212380',
+  slateSurface: useP3Colors ? 'color(display-p3 0.1176 0.1255 0.1333 / 0.5)' : '#1f212380',
+  sageSurface: useP3Colors ? 'color(display-p3 0.1176 0.1255 0.1176 / 0.5)' : '#1e201f80',
+  oliveSurface: useP3Colors ? 'color(display-p3 0.1176 0.1255 0.1176 / 0.5)' : '#1f201e80',
+  sandSurface: useP3Colors ? 'color(display-p3 0.1255 0.1255 0.1255 / 0.5)' : '#21212080',
+  tomatoSurface: useP3Colors ? 'color(display-p3 0.1569 0.0941 0.0784 / 0.5)' : '#2d191580',
+  redSurface: useP3Colors ? 'color(display-p3 0.1647 0.0863 0.0863 / 0.5)' : '#2f151780',
+  rubySurface: useP3Colors ? 'color(display-p3 0.1569 0.0941 0.1098 / 0.5)' : '#2b191d80',
+  crimsonSurface: useP3Colors ? 'color(display-p3 0.1647 0.0863 0.1176 / 0.5)' : '#2f151f80',
+  pinkSurface: useP3Colors ? 'color(display-p3 0.1725 0.0784 0.149 / 0.5)' : '#31132980',
+  plumSurface: useP3Colors ? 'color(display-p3 0.1647 0.0863 0.1725 / 0.5)' : '#2f152f80',
+  purpleSurface: useP3Colors ? 'color(display-p3 0.149 0.0941 0.1961 / 0.5)' : '#2b173580',
+  violetSurface: useP3Colors ? 'color(display-p3 0.1333 0.102 0.2118 / 0.5)' : '#25193980',
+  irisSurface: useP3Colors ? 'color(display-p3 0.1098 0.102 0.2118 / 0.5)' : '#1d1b3980',
+  indigoSurface: useP3Colors ? 'color(display-p3 0.0941 0.1098 0.2196 / 0.5)' : '#171d3b80',
+  blueSurface: useP3Colors ? 'color(display-p3 0.0706 0.1255 0.2196 / 0.5)' : '#11213d80',
+  cyanSurface: useP3Colors ? 'color(display-p3 0.0784 0.1412 0.1725 / 0.5)' : '#11252d80',
+  tealSurface: useP3Colors ? 'color(display-p3 0.0863 0.149 0.1412 / 0.5)' : '#13272580',
+  jadeSurface: useP3Colors ? 'color(display-p3 0.0863 0.149 0.1176 / 0.5)' : '#13271f80',
+  greenSurface: useP3Colors ? 'color(display-p3 0.0941 0.1412 0.1098 / 0.5)' : '#15251d80',
+  grassSurface: useP3Colors ? 'color(display-p3 0.102 0.1333 0.102 / 0.5)' : '#19231b80',
+  brownSurface: useP3Colors ? 'color(display-p3 0.1412 0.1176 0.102 / 0.5)' : '#271f1b80',
+  bronzeSurface: useP3Colors ? 'color(display-p3 0.1412 0.1255 0.1176 / 0.5)' : '#27211d80',
+  goldSurface: useP3Colors ? 'color(display-p3 0.1412 0.1333 0.1098 / 0.5)' : '#25231d80',
+  skySurface: useP3Colors ? 'color(display-p3 0.0863 0.1333 0.2196 / 0.5)' : '#13233b80',
+  mintSurface: useP3Colors ? 'color(display-p3 0.0941 0.149 0.1412 / 0.5)' : '#15272780',
+  limeSurface: useP3Colors ? 'color(display-p3 0.1098 0.1255 0.0784 / 0.5)' : '#1b211580',
+  yellowSurface: useP3Colors ? 'color(display-p3 0.1333 0.1176 0.0706 / 0.5)' : '#231f1380',
+  amberSurface: useP3Colors ? 'color(display-p3 0.1412 0.1176 0.0784 / 0.5)' : '#271f1380',
+  orangeSurface: useP3Colors ? 'color(display-p3 0.1412 0.1098 0.0706 / 0.5)' : '#271d1380',
 
     //semantic color
     colorBackground: darkColor.gray1,
