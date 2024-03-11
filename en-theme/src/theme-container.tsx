@@ -6,7 +6,7 @@ import { theme } from './themes';
 
 
 
-export const ThemeImpl = styled('div', {
+export const ThemeContainer = styled('div', {
 
   // variant tokens
   variants: {
