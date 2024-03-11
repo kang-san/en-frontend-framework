@@ -1,7 +1,32 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
 import { ThemeContainer } from "./theme-container";
+
+// 글로벌 스타일 초기화
+  // // Initial appearance on page load when `appearance` is explicitly set to `light` or `dark`
+  // const ExplicitRootAppearanceScript = React.memo(
+  //   ({ appearance }: { appearance: Exclude<ThemeOptions['appearance'], 'inherit'> }) => (
+  //     <script
+  //       dangerouslySetInnerHTML={{
+  //         __html: `!(function(){try{var d=document.documentElement,c=d.classList;c.remove('light','dark');d.style.colorScheme='${appearance}';c.add('${appearance}');}catch(e){}})();`,
+  //       }}
+  //     ></script>
+  //   ),
+  //   () => true // Never re-render
+  // );
+
+
+// accentColor를 변수로 받아서 그것에 잘 어룰리는 grayColor를 리턴하는 것 추가
+//   const resolvedGrayColor = grayColor === 'auto' ? getMatchingGrayColor(accentColor) : grayColor;
+
+
+// 화변이 동적으로 변할때 글로벌 스타일의 설정 추가
+//  React.useEffect(() => updateThemeAppearanceClass(appearanceProp), [appearanceProp]);
+
+
+// 툴팁 컴포넌트를 만들어서 tooltip을 적용하는 것
+
 
 type ThemeProps = {
   hasBackground?: boolean;
