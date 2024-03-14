@@ -35,19 +35,12 @@ export const radiiFull: Radii = {
 }
 
 type RadiiInput = {
+  value: number,
   radiusFactor: number;
-  type: 'none' | 'small' | 'medium' | 'large' | 'full';
+  scaling: number;
 };
 
 
-const radiiCal = (input: RadiiInput): number => {
-  const scalingValues = {
-    none: 0.9,
-    small: 0.95,
-    medium: 1.0,
-    large: 1.05,
-    full: 1.1,
-  };
-  
-  return input.radiusFactor * scalingValues[input.type];
+export const radiiCal = (input: RadiiInput): number => {
+  return input.value * input.radiusFactor * input.scaling;
 };

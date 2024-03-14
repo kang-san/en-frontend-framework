@@ -37,7 +37,10 @@ export const Theme: React.FC<ThemeProps> = ({
   });
 
   const setThemeAttribute = <K extends keyof ThemeProps>(attribute: K, value: ThemeProps[K]) => {
-    setThemeState(prev => ({ ...prev, [attribute]: value }));
+    setThemeState(prev => ({ 
+      ...prev, 
+      [attribute]: value
+    }));
   };
 
   // 액센트 색상에 맞는 회색 계열 결정
@@ -61,8 +64,20 @@ export const Theme: React.FC<ThemeProps> = ({
   };
 
   useEffect(() => {
+
+  }, [themeState.panelBackground]);
+
+  useEffect(() => {
+
+  }, [themeState.radius])
+
+  useEffect(() => {
     updateThemeAppearanceClass(themeState.appearance);
   }, [themeState.appearance]);
+
+  useEffect(() => {
+
+  }, [themeState.scaling])
 
   return (
     <ThemeContainer
@@ -140,4 +155,11 @@ export const Theme: React.FC<ThemeProps> = ({
         return 'gray'; // 기본값으로 'gray'를 리턴하여 어떤 케이스에도 해당하지 않는 경우에 대비
     }
   }
+  
+
+  // 이해가 어려운 부분
+  // 1. 테마코드와 스티치 코드와의 관계에 대해 ...
+  // 2. 하위에 SET함수 전달하는 이유
+  // 3. ThemeProvider로 전환을 해야만 하는지?
+
   
