@@ -3,13 +3,55 @@ import { grass, gray, indigo } from './primitive-color';
 import { tomato, mauve, slate, purple, violet, jade, yellow } from './primitive-color/light';
 import { translucent } from './styles/tokens/colors';
 import { theme } from './themes';
-
+import { radiiCal } from './styles';
 
 
 export const ThemeContainer = styled('div', {
-
+  boarderRadius: {
+    'radii1': theme.radii.radii1,
+    'radii2': theme.radii.radii2,
+    'radii3': theme.radii.radii3,
+    'radii4': theme.radii.radii4,
+    'radii5': theme.radii.radii5,
+    'radii6': theme.radii.radii6,
+  },
   // variant tokens
   variants: {
+  
+    dataScaling: {
+      '90%': { scaling: 0.9},
+      '95%': { scaling: 0.95},
+      '100%': { scaling: 1},
+      '105%': { scaling: 1.05},
+      '110%': { scaling: 1.1},
+    },
+    dataRadius: {
+      'none': {
+        radiusFactor: 0,
+        radiusFull: 0,
+        radiusThumb: 0.5,
+      },
+      'small': {
+        radiusFactor: 0.5,
+        radiusFull: 0.5,
+        radiusThumb: 0.5,
+      },
+      'medium': {
+        radiusFactor: 1,
+        radiusFull: 1,
+        radiusThumb: 1,
+      },
+      'large': {
+        radiusFactor: 2,
+        radiusFull: 2,
+        radiusThumb: 2,
+      },
+      'full': {
+        radiusFactor: 9999,
+        radiusFull: 9999,
+        radiusThumb: 9999,
+      },
+    },
     hasBackground: {
       true: {
         background: theme.colors.colorBackground, 
@@ -18,8 +60,31 @@ export const ThemeContainer = styled('div', {
         background: 'none',
       },
     },
+    appearance: {
+      'inherit': {},
+      'light': {
+      },
+      'dark': {
+      },
+    },
+    grayColor: {
+      'mauve': {
+      },
+      'slate': {
+      },
+      'sage': {
+      },
+      'olive': {
+      },
+      'sand': {
+      },
+      'gray': {
+      },
+      'auto': {
+      },
+    },
     accentColor: {
-      tomato: {
+      'tomato': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -27,7 +92,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      red: {
+      'red': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -35,7 +100,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      ruby: {
+      'ruby': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -43,7 +108,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      crimson: {
+      'crimson': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -51,7 +116,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      pink: {
+      'pink': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -59,7 +124,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      plum: {
+      'plum': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -67,7 +132,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      purple: {
+      'purple': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -75,7 +140,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      violet: {
+      'violet': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -83,7 +148,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },  
-      iris: {
+      'iris': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -91,7 +156,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      indigo: {
+      'indigo': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -99,7 +164,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      blue: {
+      'blue': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -107,7 +172,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      cyan: {
+      'cyan': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -115,7 +180,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      teal: {
+      'teal': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -123,7 +188,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      jade: {
+      'jade': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -131,7 +196,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      green: {
+      'green': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -139,7 +204,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      grass: {
+      'grass': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -147,7 +212,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      orange: {
+      'orange': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -155,7 +220,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      brown: {
+      'brown': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -163,7 +228,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      sky: {
+      'sky': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -171,7 +236,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      mint: {
+      'mint': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -179,7 +244,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      lime: {
+      'lime': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -187,7 +252,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      yellow: {
+      'yellow': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -195,7 +260,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      amber: {
+      'amber': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -203,7 +268,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      gold: {
+      'gold': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -211,7 +276,7 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      bronze: {
+      'bronze': {
         autoFillRoot: theme.colors.accent3,
         focusRoot: theme.colors.accent8,
         selectionRoot: theme.colors.accentA5,
@@ -219,13 +284,13 @@ export const ThemeContainer = styled('div', {
           backgroundColor: theme.colors.accentA5,
         }
       },
-      gray: {},
+      'gray': {},
     },
     panelBackground: {
-      solid: {
+      'solid': {
         panel: theme.colors.colorPanelSolid,
       },
-      translucent: {
+      'translucent': {
         panel: theme.colors.colorPanelTranslucent,
       },
     },

@@ -11,8 +11,8 @@ type ThemeProps = {
   accentColor?: 'tomato' | 'red' | 'ruby' | 'crimson' | 'pink' | 'plum' | 'purple' | 'violet' | 'iris' | 'indigo' | 'blue' | 'cyan' | 'teal' | 'jade' | 'green' | 'grass' | 'orange' | 'brown' | 'sky' | 'mint' | 'lime' | 'yellow' | 'amber' | 'gold' | 'bronze' | 'gray';
   grayColor?: 'mauve' | 'slate' | 'sage' | 'olive' | 'sand' | 'gray' | 'auto';
   panelBackground?: 'solid' | 'translucent';
-  radius?: 'none' | 'small' | 'medium' | 'large' | 'full';
-  scaling?: '90%' | '95%' | '100%' | '105%' | '110%';
+  dataRadius?: 'none' | 'small' | 'medium' | 'large' | 'full';
+  dataScaling?: '90%' | '95%' | '100%' | '105%' | '110%';
   children?: (themeProps: ThemeProps, themeHandlers: any) => ReactNode;
 };
 
@@ -23,8 +23,8 @@ export const Theme: React.FC<ThemeProps> = ({
   accentColor = 'indigo',
   grayColor = 'auto',
   panelBackground = 'translucent',
-  radius = 'medium',
-  scaling = '100%',
+  dataRadius = 'medium',
+  dataScaling = '100%',
   children,
 }) => {
   const [themeState, setThemeState] = useState<ThemeProps>({
@@ -32,8 +32,8 @@ export const Theme: React.FC<ThemeProps> = ({
     accentColor,
     grayColor,
     panelBackground,
-    radius,
-    scaling,
+    dataRadius,
+    dataScaling,
   });
 
   const setThemeAttribute = <K extends keyof ThemeProps>(attribute: K, value: ThemeProps[K]) => {
@@ -69,7 +69,7 @@ export const Theme: React.FC<ThemeProps> = ({
 
   useEffect(() => {
 
-  }, [themeState.radius])
+  }, [themeState.dataRadius])
 
   useEffect(() => {
     updateThemeAppearanceClass(themeState.appearance);
@@ -77,25 +77,25 @@ export const Theme: React.FC<ThemeProps> = ({
 
   useEffect(() => {
 
-  }, [themeState.scaling])
+  }, [themeState.dataScaling])
 
   return (
     <ThemeContainer
-      hasBackground={hasBackground.toString()}
+      hasBackground={hasBackground}
       appearance={themeState.appearance}
       accentColor={themeState.accentColor}
       grayColor={resolvedGrayColor} // 결정된 회색을 테마 컨테이너에 전달
       panelBackground={themeState.panelBackground}
-      radius={themeState.radius}
-      scaling={themeState.scaling}
+      dataRadius={themeState.dataRadius}
+      dataScaling={themeState.dataScaling}
     >
       {typeof children === 'function' ? children(themeState, {
         setAppearance: (value: ThemeProps['appearance']) => setThemeAttribute('appearance', value),
         setAccentColor: (value: ThemeProps['accentColor']) => setThemeAttribute('accentColor', value),
         setGrayColor: (value: ThemeProps['grayColor']) => setThemeAttribute('grayColor', value),
         setPanelBackground: (value: ThemeProps['panelBackground']) => setThemeAttribute('panelBackground', value),
-        setRadius: (value: ThemeProps['radius']) => setThemeAttribute('radius', value),
-        setScaling: (value: ThemeProps['scaling']) => setThemeAttribute('scaling', value),
+        setRadius: (value: ThemeProps['dataRadius']) => setThemeAttribute('dataRadius', value),
+        setScaling: (value: ThemeProps['dataScaling']) => setThemeAttribute('dataScaling', value),
       }) : children}
     </ThemeContainer>
   );

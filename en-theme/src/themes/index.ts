@@ -17,6 +17,7 @@ const supportsP3ColorAndMediaQuery = () => {
 const useP3Colors = supportsP3ColorAndMediaQuery();
 
 // `radiiCal` 함수를 사용하여 각 `radii`에 대한 값을 계산합니다.
+// Theme contaier로 보내야함
 const calculateRadiiValues = (scale: '90' | '95' | '100' | '105' | '110') => {
   const scalingFactor = scalingValues[scale];
   return {
@@ -40,10 +41,6 @@ export const { styled, theme, globalCss, keyframes, createTheme } = createStitch
       radii4: `${radiiValues.radii4}px`,
       radii5: `${radiiValues.radii5}px`,
       radii6: `${radiiValues.radii6}px`,
-    },
-
-    scaling: {
-      ...scalingValues,
     },
 
     colors: {
