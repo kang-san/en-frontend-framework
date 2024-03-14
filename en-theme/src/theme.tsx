@@ -50,9 +50,17 @@ export const Theme: React.FC<ThemeProps> = ({
     }));
   }, [themeState.accentColor, themeState.grayColor]);
 
-  
-  // Client-side only changes when `appearance` prop is changed while developing
-  React.useEffect(() => {
+  // 이 함수는 이제 appearance 상태를 업데이트하는 로직을 포함합니다.
+  const updateThemeAppearanceClass = (appearance: ThemeProps['appearance']) => {
+    if (appearance === 'inherit') return;
+
+    setThemeState(prev => ({
+      ...prev,
+      appearance, // 상태를 직접 업데이트
+    }));
+  };
+
+  useEffect(() => {
     updateThemeAppearanceClass(themeState.appearance);
   }, [themeState.appearance]);
 
@@ -130,27 +138,6 @@ export const Theme: React.FC<ThemeProps> = ({
         return 'sand';
       default:
         return 'gray'; // 기본값으로 'gray'를 리턴하여 어떤 케이스에도 해당하지 않는 경우에 대비
-    }
-  }
-  
-  export function updateThemeAppearanceClass(appearance: ThemeProps['appearance']) {
-    const root = document.documentElement;
-  
-    // 모든 관련 클래스 제거
-    root.classList.remove('light-theme', 'dark-theme', 'light', 'dark');
-    
-    // 'inherit' 또는 'undefined'가 아닌 경우에만 새로운 클래스 추가
-    if (appearance && appearance !== 'inherit') {
-      // colorScheme 설정에서 'undefined' 배제
-      root.style.colorScheme = appearance; // appearance가 'undefined'일 수 없으므로 안전하게 할당 가능
-  
-      // 테마에 따라 적절한 클래스 추가
-      let themeClass = appearance; // 기본값 설정
-      // 'light' 또는 'dark'가 아니면 '-theme' 접미사 추가
-      if (appearance !== 'light' && appearance !== 'dark') {
-        themeClass += '-theme';
-      }
-      root.classList.add(themeClass);
     }
   }
   
