@@ -7,49 +7,57 @@ import { radiiCal } from './styles';
 
 
 export const ThemeContainer = styled('div', {
-  boarderRadius: {
-    'radii1': theme.radii.radii1,
-    'radii2': theme.radii.radii2,
-    'radii3': theme.radii.radii3,
-    'radii4': theme.radii.radii4,
-    'radii5': theme.radii.radii5,
-    'radii6': theme.radii.radii6,
-  },
+  '--radius-1': 'calc(3px * var(--scaling) * var(--radius-factor))',
+  '--radius-2': 'calc(4px * var(--scaling) * var(--radius-factor))',
+  '--radius-3': 'calc(6px * var(--scaling) * var(--radius-factor))',
+  '--radius-4': 'calc(8px * var(--scaling) * var(--radius-factor))',
+  '--radius-5': 'calc(12px * var(--scaling) * var(--radius-factor))',
+  '--radius-6': 'calc(16px * var(--scaling) * var(--radius-factor))',
+
   // variant tokens
   variants: {
-  
     dataScaling: {
-      '90%': { scaling: 0.9},
-      '95%': { scaling: 0.95},
-      '100%': { scaling: 1},
-      '105%': { scaling: 1.05},
-      '110%': { scaling: 1.1},
+      '90': {
+        '--scaling': '0.9',
+      },
+      '95': {
+        '--scaling': '0.95',
+      },
+      '100': {
+        '--scaling': '1',
+      },
+      '105': {
+        '--scaling': '1.05',
+      },
+      '110': {
+        '--scaling': '1.1',
+      },
     },
     dataRadius: {
-      'none': {
-        radiusFactor: 0,
-        radiusFull: 0,
-        radiusThumb: 0.5,
+      none: {
+        '--radius-factor': '0',
+        '--radius-full': '0px',
+        '--radius-thumb': '0.5px',
       },
-      'small': {
-        radiusFactor: 0.5,
-        radiusFull: 0.5,
-        radiusThumb: 0.5,
+      small: {
+        '--radius-factor': '0.75',
+        '--radius-full': '0px',
+        '--radius-thumb': '0.5px',
       },
-      'medium': {
-        radiusFactor: 1,
-        radiusFull: 1,
-        radiusThumb: 1,
+      medium: {
+        '--radius-factor': '1',
+        '--radius-full': '0px',
+        '--radius-thumb': '9999px',
       },
-      'large': {
-        radiusFactor: 2,
-        radiusFull: 2,
-        radiusThumb: 2,
+      large: {
+        '--radius-factor': '1.5',
+        '--radius-full': '0px',
+        '--radius-thumb': '9999px',
       },
-      'full': {
-        radiusFactor: 9999,
-        radiusFull: 9999,
-        radiusThumb: 9999,
+      full: {
+        '--radius-factor': '1.5',
+        '--radius-full': '9999px',
+        '--radius-thumb': '9999px',
       },
     },
     hasBackground: {
