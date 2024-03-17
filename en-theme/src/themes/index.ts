@@ -17,7 +17,7 @@ const supportsP3ColorAndMediaQuery = () => {
 const useP3Colors = supportsP3ColorAndMediaQuery();
 
 // `radiiCal` 함수를 사용하여 각 `radii`에 대한 값을 계산합니다.
-// Theme contaier로 보내야함
+// 이것을 유틸함수로 만들 고민도 해야함
 const calculateRadiiValues = (scale: '90' | '95' | '100' | '105' | '110') => {
   const scalingFactor = scalingValues[scale];
   return {
@@ -1227,7 +1227,12 @@ const darkTheme = createTheme('dark-theme', {
 
 
 export const globalStyles = globalCss({
-  ...fonts,
+  '--radius-1': 'calc(3px * var(--scaling) * var(--radius-factor))',
+  '--radius-2': 'calc(4px * var(--scaling) * var(--radius-factor))',
+  '--radius-3': 'calc(6px * var(--scaling) * var(--radius-factor))',
+  '--radius-4': 'calc(8px * var(--scaling) * var(--radius-factor))',
+  '--radius-5': 'calc(12px * var(--scaling) * var(--radius-factor))',
+  '--radius-6': 'calc(16px * var(--scaling) * var(--radius-factor))',
 
 });
 

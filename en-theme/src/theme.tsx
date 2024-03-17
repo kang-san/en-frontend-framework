@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, ReactNode } from 'react';
+import React, { useState, useEffect, ReactNode, createContext, useContext } from 'react';
 import { ThemeContainer } from "./theme-container";
 
 // 툴팁 컴포넌트를 만들어서 tooltip을 적용하는 것
@@ -16,6 +16,8 @@ type ThemeProps = {
   children?: (themeProps: ThemeProps, themeHandlers: any) => ReactNode;
 };
 
+const ThemeContext = createContext<ThemeProps | undefined>(undefined);
+export const useTheme = () => useContext(ThemeContext);
 
 export const Theme: React.FC<ThemeProps> = ({
   hasBackground = true,
@@ -156,10 +158,5 @@ export const Theme: React.FC<ThemeProps> = ({
     }
   }
   
-
-  // 이해가 어려운 부분
-  // 1. 테마코드와 스티치 코드와의 관계에 대해 ...
-  // 2. 하위에 SET함수 전달하는 이유
-  // 3. ThemeProvider로 전환을 해야만 하는지?
 
   
