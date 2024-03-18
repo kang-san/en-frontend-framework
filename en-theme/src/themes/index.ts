@@ -16,33 +16,8 @@ const supportsP3ColorAndMediaQuery = () => {
 };
 const useP3Colors = supportsP3ColorAndMediaQuery();
 
-// `radiiCal` 함수를 사용하여 각 `radii`에 대한 값을 계산합니다.
-// 이것을 유틸함수로 만들 고민도 해야함
-const calculateRadiiValues = (scale: '90' | '95' | '100' | '105' | '110') => {
-  const scalingFactor = scalingValues[scale];
-  return {
-    radii1: radiiCal({value: 3, radiusFactor: radiiNone.radiusFactor, scaling: scalingFactor }),
-    radii2: radiiCal({value: 4, radiusFactor: radiiSmall.radiusFactor, scaling: scalingFactor }),
-    radii3: radiiCal({value: 6, radiusFactor: radiiMedium.radiusFactor, scaling: scalingFactor }),
-    radii4: radiiCal({value: 8, radiusFactor: radiiLarge.radiusFactor, scaling: scalingFactor }),
-    radii5: radiiCal({value: 12, radiusFactor: radiiFull.radiusFactor, scaling: scalingFactor }),
-    radii6: radiiCal({value: 16, radiusFactor: radiiFull.radiusFactor, scaling: scalingFactor }),
-  };
-};
-
-const radiiValues = calculateRadiiValues('100');
-
 export const { styled, theme, globalCss, keyframes, createTheme } = createStitches({
   theme: {
-    radii: {
-      radii1: `${radiiValues.radii1}px`,
-      radii2: `${radiiValues.radii2}px`,
-      radii3: `${radiiValues.radii3}px`,
-      radii4: `${radiiValues.radii4}px`,
-      radii5: `${radiiValues.radii5}px`,
-      radii6: `${radiiValues.radii6}px`,
-    },
-
     colors: {
       color: lightColor.gray12,
 
@@ -1218,21 +1193,313 @@ const darkTheme = createTheme('dark-theme', {
     //semantic color
     colorBackground: darkColor.gray1,
     colorOverlay: blackA.blackA8,
-    colorPanelSoid: lightColor.gray2,
-    colorPanelTraslucent: translucent.gray2Translucent,
-    colorSurface: "rgba(255, 255, 255, 0.25)",
-  }
+    colorPanelSolid: lightColor.gray2, // 오타 수정
+    colorPanelTranslucent: translucent.gray2Translucent, // 오타 수정
+    colorSurface: "rgba(255, 255, 255, 0.25)", 
+  },
+
+  // variant tokens
+  variants: {
+    dataScaling: {
+      '90': {
+        '--scaling': '0.9',
+      },
+      '95': {
+        '--scaling': '0.95',
+      },
+      '100': {
+        '--scaling': '1',
+      },
+      '105': {
+        '--scaling': '1.05',
+      },
+      '110': {
+        '--scaling': '1.1',
+      },
+    },
+    dataRadius: {
+      none: {
+        '--radius-factor': '0',
+        '--radius-full': '0px',
+        '--radius-thumb': '0.5px',
+      },
+      small: {
+        '--radius-factor': '0.75',
+        '--radius-full': '0px',
+        '--radius-thumb': '0.5px',
+      },
+      medium: {
+        '--radius-factor': '1',
+        '--radius-full': '0px',
+        '--radius-thumb': '9999px',
+      },
+      large: {
+        '--radius-factor': '1.5',
+        '--radius-full': '0px',
+        '--radius-thumb': '9999px',
+      },
+      full: {
+        '--radius-factor': '1.5',
+        '--radius-full': '9999px',
+        '--radius-thumb': '9999px',
+      },
+    },
+    hasBackground: {
+      true: {
+        background: theme.colors.colorBackground, 
+      },
+      false: {
+        background: 'none',
+      },
+    },
+    appearance: {
+      'inherit': {},
+      'light': {
+      },
+      'dark': {
+      },
+    },
+    grayColor: {
+      'mauve': {
+      },
+      'slate': {
+      },
+      'sage': {
+      },
+      'olive': {
+      },
+      'sand': {
+      },
+      'gray': {
+      },
+      'auto': {
+      },
+    },
+    accentColor: {
+      'tomato': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'red': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'ruby': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'crimson': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'pink': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'plum': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'purple': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'violet': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },  
+      'iris': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'indigo': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'blue': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'cyan': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'teal': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'jade': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'green': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'grass': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'orange': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'brown': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'sky': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'mint': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'lime': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'yellow': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'amber': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'gold': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'bronze': {
+        autoFillRoot: theme.colors.accent3,
+        focusRoot: theme.colors.accent8,
+        selectionRoot: theme.colors.accentA5,
+        selection: {
+          backgroundColor: theme.colors.accentA5,
+        }
+      },
+      'gray': {},
+    },
+    
+    panelBackground: {
+      'solid': {
+        panel: theme.colors.colorPanelSolid,
+      },
+      'translucent': {
+        panel: theme.colors.colorPanelTranslucent,
+      },
+    },
+  },
 });
 
 
 
 export const globalStyles = globalCss({
-  '--radius-1': 'calc(3px * var(--scaling) * var(--radius-factor))',
-  '--radius-2': 'calc(4px * var(--scaling) * var(--radius-factor))',
-  '--radius-3': 'calc(6px * var(--scaling) * var(--radius-factor))',
-  '--radius-4': 'calc(8px * var(--scaling) * var(--radius-factor))',
-  '--radius-5': 'calc(12px * var(--scaling) * var(--radius-factor))',
-  '--radius-6': 'calc(16px * var(--scaling) * var(--radius-factor))',
-
+  ':root': {
+    '--radius-1': `calc(3px * ${theme.variants.dataScaling[theme.variants.dataScaling].scaling} * ${theme.variants.dataRadius[theme.variant.dataRadius].radiusFactor})`,
+    '--radius-2': `calc(4px * ${theme.variants.dataScaling[theme.variants.dataScaling].scaling} * ${theme.variants.dataRadius[theme.variant.dataRadius].radiusFactor})`,
+    '--radius-3': `calc(6px * ${theme.variants.dataScaling[theme.variants.dataScaling].scaling} * ${theme.variants.dataRadius[theme.variant.dataRadius].radiusFactor})`,
+    '--radius-4': `calc(8px * ${theme.variants.dataScaling[theme.variants.dataScaling].scaling} * ${theme.variants.dataRadius[theme.variant.dataRadius].radiusFactor})`,
+    '--radius-5': `calc(12px * ${theme.variants.dataScaling[theme.variants.dataScaling].scaling} * ${theme.variants.dataRadius[theme.variant.dataRadius].radiusFactor})`,
+    '--radius-6': `calc(16px * ${theme.variants.dataScaling[theme.variants.dataScaling].scaling} * ${theme.variants.dataRadius[theme.variant.dataRadius].radiusFactor})`,
+  },
 });
 

@@ -116,47 +116,38 @@ export const Theme: React.FC<ThemeProps> = ({
   );
   ExplicitRootAppearanceScript.displayName = 'ExplicitRootAppearanceScript';
 
-  function getMatchingGrayColor(accentColor: ThemeProps['accentColor']): ThemeProps['grayColor'] {
-    if (accentColor === 'gray') {
-      return 'gray'; // 'gray' 액센트 색상인 경우 바로 'gray' 반환
-    }
-    
-    // 액센트 색상에 따라 매칭되는 회색 계열 색상 결정
-    switch (accentColor) {
-      case 'tomato':
-      case 'red':
-      case 'ruby':
-      case 'crimson':
-      case 'pink':
-      case 'plum':
-      case 'purple':
-      case 'violet':
-        return 'mauve';
-      case 'iris':
-      case 'indigo':
-      case 'blue':
-      case 'sky':
-      case 'cyan':
-        return 'slate';
-      case 'teal':
-      case 'jade':
-      case 'mint':
-      case 'green':
-        return 'sage';
-      case 'grass':
-      case 'lime':
-        return 'olive';
-      case 'yellow':
-      case 'amber':
-      case 'orange':
-      case 'brown':
-      case 'gold':
-      case 'bronze':
-        return 'sand';
-      default:
-        return 'gray'; // 기본값으로 'gray'를 리턴하여 어떤 케이스에도 해당하지 않는 경우에 대비
-    }
-  }
-  
-
-  
+ // 액센트 색상에 맞는 회색 계열 결정
+ const getMatchingGrayColor = (accentColor: ThemeProps['accentColor']) => {
+  // 액센트 색상에 따라 회색 계열 결정 로직 구현
+  switch (accentColor) {
+    case 'tomato':
+    case 'red':
+    case 'ruby':
+    case 'crimson':
+    case 'pink':
+    case 'plum':
+    case 'purple':
+    case 'violet':
+    case 'iris':
+    case 'indigo':
+      return 'mauve';
+    case 'blue':
+    case 'cyan':
+    case 'teal':
+    case 'jade':
+      return 'slate';
+    case 'green':
+    case 'grass':
+    case 'lime':
+      return 'sage';
+    case 'yellow':
+    case 'amber':
+    case 'orange':
+    case 'brown':
+    case 'gold':
+    case 'bronze':
+      return 'sand';
+    default:
+      return 'gray';
+  };
+ }
