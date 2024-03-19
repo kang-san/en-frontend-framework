@@ -1,15 +1,27 @@
-import React, { createContext, useContext, ReactNode, useEffect, useState } from 'react';
-import { theme, globalStyles } from '../src/themes';
+import React, { createContext, useContext, ReactNode, useEffect, useState, useMemo } from 'react';
 
-export type ThemeProps = {
+
+export interface ThemeProps {
   hasBackground?: boolean;
   appearance?: 'inherit' | 'light' | 'dark';
-  accentColor?: keyof typeof theme.colors;
+  accentColor?: 'tomato' | 'red' | 'ruby' | 'crimson' | 'pink' | 'plum' | 'purple' | 'violet' | 'iris' | 'indigo' | 'blue' | 'cyan' | 'teal' | 'jade' | 'green' | 'grass' | 'orange' | 'brown' | 'sky' | 'mint' | 'lime' | 'yellow' | 'amber' | 'gold' | 'bronze' | 'gray';
   grayColor?: 'mauve' | 'slate' | 'sage' | 'olive' | 'sand' | 'gray' | 'auto';
   panelBackground?: 'solid' | 'translucent';
-  dataRadius?: keyof typeof theme.variants.dataRadius;
-  dataScaling?: keyof typeof theme.variants.dataScaling;
-};
+  dataRadius?: {
+    none: { '--radius-factor': number, '--radius-full': string, '--radius-thumb': string };
+    small: { '--radius-factor': number, '--radius-full': string, '--radius-thumb': string };
+    medium: { '--radius-factor': number, '--radius-full': string, '--radius-thumb': string };
+    large: { '--radius-factor': number, '--radius-full': string, '--radius-thumb': string };
+    full: { '--radius-factor': number, '--radius-full': string, '--radius-thumb': string };
+  };
+  dataScaling?: {
+    '90%': { '--scaling': number };
+    '95%': { '--scaling': number };
+    '100%': { '--scaling': number };
+    '105%': { '--scaling': number };
+    '110%': { '--scaling': number };
+  };
+}
 
 const ThemeContext = createContext<{
   themeState: ThemeProps;
@@ -36,86 +48,70 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   defaultTheme = {},
   children,
 }) => {
-  const [themeState, setThemeState] = useState<ThemeProps>({
+  const [themeState, setThemeState] = useState<ThemeProps>(() => ({
     hasBackground: defaultTheme.hasBackground ?? true,
     appearance: defaultTheme.appearance ?? 'inherit',
     accentColor: defaultTheme.accentColor ?? 'indigo',
     grayColor: defaultTheme.grayColor ?? 'auto',
     panelBackground: defaultTheme.panelBackground ?? 'translucent',
-    dataRadius: defaultTheme.dataRadius ?? 'medium',
-    dataScaling: defaultTheme.dataScaling ?? '100',
-  });
+    dataRadius: defaultTheme.dataRadius ?? {
+      none: { '--radius-factor': 0, '--radius-full': '0px', '--radius-thumb': '0.5px' },
+      small: { '--radius-factor': 0.75, '--radius-full': '0px', '--radius-thumb': '0.5px' },
+      medium: { '--radius-factor': 1, '--radius-full': '0px', '--radius-thumb': '9999px' },
+      large: { '--radius-factor': 1.5, '--radius-full': '0px', '--radius-thumb': '9999px' },
+      full: { '--radius-factor': 1.5, '--radius-full': '9999px', '--radius-thumb': '9999px' },
+    },
+    dataScaling: defaultTheme.dataScaling ?? {
+      '90%': { '--scaling': 0.9 },
+      '95%': { '--scaling': 0.95 },
+      '100%': { '--scaling': 1 },
+      '105%': { '--scaling': 1.05 },
+      '110%': { '--scaling': 1.1 },
+    },
+  }));
 
   const setThemeAttribute = <K extends keyof ThemeProps>(attribute: K, value: ThemeProps[K]) => {
-    setThemeState(prev => ({ 
-      ...prev, 
-      [attribute]: value
+    setThemeState(prev => ({
+      ...prev,
+      [attribute]: value,
     }));
   };
 
-  const resolvedGrayColor = themeState.grayColor === 'auto' ? getMatchingGrayColor(themeState.accentColor) : themeState.grayColor;
+  const resolvedGrayColor = useMemo(() => {
+    if (themeState.grayColor === 'auto') {
+      return getMatchingGrayColor(themeState.accentColor);
+    }
+    return themeState.grayColor;
+  }, [themeState.accentColor, themeState.grayColor]);
 
   useEffect(() => {
     setThemeState(prevState => ({
       ...prevState,
-      grayColor: resolvedGrayColor
+      grayColor: resolvedGrayColor,
     }));
-  }, [themeState.accentColor, themeState.grayColor]);
+  }, [resolvedGrayColor]);
 
   useEffect(() => {
-    setThemeState(prev => ({
-      ...prev,
-      panelBackground: themeState.panelBackground,
-    }));
-  }, [themeState.panelBackground]);
-  
-  useEffect(() => {
-    setThemeState(prev => ({
-      ...prev,
-      dataRadius: themeState.dataRadius,
-    }));
-  }, [themeState.dataRadius]);
+    const htmlElement = document.documentElement;
+    htmlElement.classList.remove('light', 'dark');
 
-  // 라이트/다크 모드 적용 로직 추가
-  useEffect(() => {
-    if (themeState.appearance && themeState.appearance !== 'inherit') {
-      const htmlElement = document.documentElement;
-      htmlElement.classList.remove('light', 'dark');
+    if (themeState.appearance === 'light' || themeState.appearance === 'dark') {
       htmlElement.classList.add(themeState.appearance);
       htmlElement.style.colorScheme = themeState.appearance;
+    } else {
+      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const defaultAppearance = prefersDarkScheme ? 'dark' : 'light';
+      htmlElement.classList.add(defaultAppearance);
+      htmlElement.style.colorScheme = defaultAppearance;
     }
   }, [themeState.appearance]);
-  
-  useEffect(() => {
-    setThemeState(prev => ({
-      ...prev,
-      dataScaling: themeState.dataScaling,
-    }));
-  }, [themeState.dataScaling]);
 
-  const className = globalStyles(theme.variants.dataScaling[themeState.dataScaling], theme.variants.dataRadius[themeState.dataRadius]);
   return (
     <ThemeContext.Provider value={{ themeState, setThemeAttribute }}>
-      {themeState.appearance !== 'inherit' && (
-        <ExplicitRootAppearanceScript appearance={themeState.appearance} />
-      )}
-      <div className={className}>{children}</div>
+      {children}
     </ThemeContext.Provider>
   );
 };
-
-// Initial appearance on page load when `appearance` is explicitly set to `light` or `dark`
-export const ExplicitRootAppearanceScript = React.memo(
-  ({ appearance }: { appearance: Exclude<ThemeProps['appearance'], 'inherit'> }) => (
-    <script
-      dangerouslySetInnerHTML={{
-        __html: `!(function(){try{var d=document.documentElement,c=d.classList;c.remove('light','dark');d.style.colorScheme='${appearance}';c.add('${appearance}');}catch(e){}})();`,
-      }}
-    ></script>
-  ),
-  () => true // Never re-render
-);
-ExplicitRootAppearanceScript.displayName = 'ExplicitRootAppearanceScript';
 
 // 액센트 색상에 맞는 회색 계열 결정
 const getMatchingGrayColor = (accentColor: ThemeProps['accentColor']) => {

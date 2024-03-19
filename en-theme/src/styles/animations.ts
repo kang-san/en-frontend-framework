@@ -1,4 +1,4 @@
-import { keyframes } from '../themes/index';
+import { keyframes } from '../themes/theme';
 
 export const FadeIn = keyframes({
   from: { opacity: 0 },

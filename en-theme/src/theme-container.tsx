@@ -2,7 +2,7 @@ import { styled } from '@stitches/react';
 import { grass, gray, indigo } from './primitive-color';
 import { tomato, mauve, slate, purple, violet, jade, yellow } from './primitive-color/light';
 import { translucent } from './styles/tokens/colors';
-import { theme } from './themes';
+import { theme } from './themes/theme';
 import { radiiCal } from './styles';
 
 
@@ -10,19 +10,19 @@ export const ThemeContainer = styled('div', {
   // variant tokens
   variants: {
     dataScaling: {
-      '90': {
+      '90%': {
         '--scaling': '0.9',
       },
-      '95': {
+      '95%': {
         '--scaling': '0.95',
       },
-      '100': {
+      '100%': {
         '--scaling': '1',
       },
-      '105': {
+      '105%': {
         '--scaling': '1.05',
       },
-      '110': {
+      '110%': {
         '--scaling': '1.1',
       },
     },
