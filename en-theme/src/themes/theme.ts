@@ -1196,14 +1196,3 @@ const darkTheme = createTheme('dark-theme', {
     colorSurface: "rgba(255, 255, 255, 0.25)", 
   },
 })
-
-export const globalStyles = globalCss({
-  ':root': {
-  '--radius-1': `calc(3px * ${dataScaling } * ${dataScaling })`,
-  '--radius-2': `calc(4px * ${ } * ${  })`,
-  '--radius-3': `calc(6px * ${ } * ${  })`,
-  '--radius-4': `calc(8px * ${ } * ${  })`,
-  '--radius-5': `calc(12px * ${ } * ${  })`,
-  '--radius-6': `calc(16px * ${ } * ${  })`,
-});
-

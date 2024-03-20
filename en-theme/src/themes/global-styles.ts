@@ -1,22 +1,31 @@
-import React from 'react';
+// global-styles.ts
+import React, { useMemo, createElement } from 'react';
 import { globalCss } from '@stitches/react';
-import { useTheme } from '../theme-provider';
-import { theme } from './theme';
+import { useTheme, ThemeProps } from '../theme-provider';
 
-const globalStyles = globalCss({
-  ':root': {
-    '--radius-1': `calc(3px * ${theme.dataScaling['100%']['--scaling']} * ${theme.variants.dataRadius['medium']['--radius-factor']})`,
-    '--radius-2': `calc(4px * ${theme.dataScaling['100%']['--scaling']} * ${theme.variants.dataRadius['medium']['--radius-factor']})`,
-    '--radius-3': `calc(6px * ${theme.dataScaling['100%']['--scaling']} * ${theme.variants.dataRadius['medium']['--radius-factor']})`,
-    '--radius-4': `calc(8px * ${theme.dataScaling['100%']['--scaling']} * ${theme.variants.dataRadius['medium']['--radius-factor']})`,
-    '--radius-5': `calc(12px * ${theme.dataScaling['100%']['--scaling']} * ${theme.variants.dataRadius['medium']['--radius-factor']})`,
-    '--radius-6': `calc(16px * ${theme.dataScaling['100%']['--scaling']} * ${theme.variants.dataRadius['medium']['--radius-factor']})`,
-  },
-});
+const calculateCssVariables = (dataScaling: ThemeProps['dataScaling'], dataRadius: ThemeProps['dataRadius']) => {
+  const variables: Record<string, string> = {};
+
+  const radiusBaseFactors = [3, 4, 6, 8, 12, 16];
+  const radiusKeys = ['--radius-1', '--radius-2', '--radius-3', '--radius-4', '--radius-5', '--radius-6'];
+
+  radiusKeys.forEach((key, index) => {
+    variables[key] = `calc(${radiusBaseFactors[index]}px * ${dataScaling?.['100%']['--scaling'] ?? 1} * ${dataRadius?.medium['--radius-factor'] ?? 1})`;
+  });
+
+  return variables;
+};
 
 export const GlobalStyles: React.FC = () => {
   const { themeState } = useTheme();
-  globalStyles();
+  const cssVariables = useMemo(
+    () => calculateCssVariables(themeState.dataScaling, themeState.dataRadius),
+    [themeState.dataScaling, themeState.dataRadius]
+  );
 
-  return null;
+  const globalStyles = globalCss({
+    ':root': cssVariables,
+  });
+
+  return createElement('div', { className: globalStyles() });
 };

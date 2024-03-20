@@ -1,10 +1,24 @@
 import { styled } from '@stitches/react';
-import { grass, gray, indigo } from './primitive-color';
-import { tomato, mauve, slate, purple, violet, jade, yellow } from './primitive-color/light';
-import { translucent } from './styles/tokens/colors';
-import { theme } from './themes/theme';
-import { radiiCal } from './styles';
+import { useTheme } from './theme-provider';
+import { theme } from './themes';
 
+interface ThemeContainerVariants {
+  dataScaling?: {
+    '90%': { '--scaling': string };
+    '95%': { '--scaling': string };
+    '100%': { '--scaling': string };
+    '105%': { '--scaling': string };
+    '110%': { '--scaling': string };
+  };
+  dataRadius?: {
+    none: { '--radius-factor': string; '--radius-full': string; '--radius-thumb': string };
+    small: { '--radius-factor': string; '--radius-full': string; '--radius-thumb': string };
+    medium: { '--radius-factor': string; '--radius-full': string; '--radius-thumb': string };
+    large: { '--radius-factor': string; '--radius-full': string; '--radius-thumb': string };
+    full: { '--radius-factor': string; '--radius-full': string; '--radius-thumb': string };
+  };
+  // ... 다른 variant 속성들 ...
+}
 
 export const ThemeContainer = styled('div', {
   // variant tokens
@@ -296,4 +310,28 @@ export const ThemeContainer = styled('div', {
       },
     },
   },
-})
+});
+
+// 수정된 부분
+type DataRadiusVariant = keyof ThemeContainerVariants['dataRadius'];
+type DataScalingVariant = keyof ThemeContainerVariants['dataScaling'];
+
+export const ThemedContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { themeState } = useTheme();
+
+  const dataRadiusVariant = themeState.dataRadius as DataRadiusVariant;
+  const dataScalingVariant = themeState.dataScaling as DataScalingVariant;
+
+  return (
+    <ThemeContainer
+      dataRadius={{
+        [dataRadiusVariant]: themeState.dataRadius?.[dataRadiusVariant],
+      }}
+      dataScaling={{
+        [dataScalingVariant]: themeState.dataScaling?.[dataScalingVariant],
+      }}
+    >
+      {children}
+    </ThemeContainer>
+  );
+};
