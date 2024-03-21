@@ -23,6 +23,14 @@ interface ThemeContainerVariants {
 export const ThemeContainer = styled('div', {
   // variant tokens
   variants: {
+    panelBackground: {
+      'solid': {
+        panel: theme.colors.colorPanelSolid,
+      },
+      'translucent': {
+        panel: theme.colors.colorPanelTranslucent,
+      },
+    },
     dataScaling: {
       '90%': {
         '--scaling': '0.9',
@@ -75,29 +83,7 @@ export const ThemeContainer = styled('div', {
         background: 'none',
       },
     },
-    appearance: {
-      'inherit': {},
-      'light': {
-      },
-      'dark': {
-      },
-    },
-    grayColor: {
-      'mauve': {
-      },
-      'slate': {
-      },
-      'sage': {
-      },
-      'olive': {
-      },
-      'sand': {
-      },
-      'gray': {
-      },
-      'auto': {
-      },
-    },
+    /*   Focus, selection, and autofill    */
     accentColor: {
       'tomato': {
         autoFillRoot: theme.colors.accent3,
@@ -300,14 +286,6 @@ export const ThemeContainer = styled('div', {
         }
       },
       'gray': {},
-    },
-    panelBackground: {
-      'solid': {
-        panel: theme.colors.colorPanelSolid,
-      },
-      'translucent': {
-        panel: theme.colors.colorPanelTranslucent,
-      },
     },
   },
 });

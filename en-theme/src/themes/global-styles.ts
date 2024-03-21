@@ -1,7 +1,8 @@
 // global-styles.ts
 import React, { useMemo, createElement } from 'react';
 import { globalCss } from '@stitches/react';
-import { useTheme, ThemeProps } from '../theme-provider';
+import { useTheme, ThemeProps, DataRadiusProps, DataScalingProps } from '../theme-provider';
+import { ThemeContainer } from '../theme-container';
 
 const calculateCssVariables = (dataScaling: ThemeProps['dataScaling'], dataRadius: ThemeProps['dataRadius']) => {
   const variables: Record<string, string> = {};
@@ -10,7 +11,9 @@ const calculateCssVariables = (dataScaling: ThemeProps['dataScaling'], dataRadiu
   const radiusKeys = ['--radius-1', '--radius-2', '--radius-3', '--radius-4', '--radius-5', '--radius-6'];
 
   radiusKeys.forEach((key, index) => {
-    variables[key] = `calc(${radiusBaseFactors[index]}px * ${dataScaling?.['100%']['--scaling'] ?? 1} * ${dataRadius?.medium['--radius-factor'] ?? 1})`;
+    const scalingFactor = dataScaling ? ThemeContainer.variants.dataScaling[dataScaling]['--scaling'] : 1;
+    const radiusFactor = dataRadius ? ThemeContainer.variants.dataRadius[dataRadius]['--radius-factor'] : 1;
+    variables[key] = `calc(${radiusBaseFactors[index]}px * ${scalingFactor} * ${radiusFactor})`;
   });
 
   return variables;

@@ -47,6 +47,16 @@ export const { styled, theme, globalCss, keyframes, createTheme } = createStitch
       bronze9Contrast: contrast.bronze9Contrast,
       gray9Contrast: contrast.gray9Contrast,
       //transparency
+      // :where(.radix-themes) {
+      //   --color-transparent: rgb(0 0 0 / 0);
+      // }
+      // @supports (color: color(display-p3 1 1 1)) {
+      //   @media (color-gamut: p3) {
+      //     .radix-themes {
+      //       --color-transparent: color(display-p3 0 0 0 / 0);
+      //     }
+      //   }
+      // }
 
       /////surface color & P3 surface color
       graySurface: useP3Colors ? 'color(display-p3 1 1 1 / 0.8)' : '#ffffffcc',
