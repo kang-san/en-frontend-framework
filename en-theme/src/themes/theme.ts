@@ -17,6 +17,9 @@ const useP3Colors = supportsP3ColorAndMediaQuery();
 export const { styled, theme, globalCss, keyframes, createTheme } = createStitches({
   theme: {
     colors: {
+      //light color
+      ...lightColor,
+
       color: lightColor.gray12,
 
       //contrast color
@@ -1156,6 +1159,9 @@ const sand = createTheme('gray-sand', {
 
 const darkTheme = createTheme('dark-theme', {
   colors: {
+    //dark color
+    ...darkColor,
+
     /////Gray 2 equivalent for translucent panels
     gray2Translucent: useP3Colors ? 'color(display-p3 0.1137 0.1137 0.1137 / 0.7)' : translucent.gray2Translucent,
     mauve2Translucent: useP3Colors ? 'color(display-p3 0.1176 0.1137 0.1176 / 0.7)' : translucent.mauve2Translucent,
