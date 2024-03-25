@@ -1,23 +1,12 @@
 import { styled } from '@stitches/react';
 import { useTheme } from './theme-provider';
 import { theme } from './themes';
+import { DataRadiusProps } from './styles/types/radius.props';
+import { DataScalingProps } from './styles/types/scaling.props';
 
 interface ThemeContainerVariants {
-  dataScaling?: {
-    '90%': { '--scaling': string };
-    '95%': { '--scaling': string };
-    '100%': { '--scaling': string };
-    '105%': { '--scaling': string };
-    '110%': { '--scaling': string };
-  };
-  dataRadius?: {
-    none: { '--radius-factor': string; '--radius-full': string; '--radius-thumb': string };
-    small: { '--radius-factor': string; '--radius-full': string; '--radius-thumb': string };
-    medium: { '--radius-factor': string; '--radius-full': string; '--radius-thumb': string };
-    large: { '--radius-factor': string; '--radius-full': string; '--radius-thumb': string };
-    full: { '--radius-factor': string; '--radius-full': string; '--radius-thumb': string };
-  };
-  // ... 다른 variant 속성들 ...
+  dataScaling?: DataScalingProps;
+  dataRadius?: DataRadiusProps;
 }
 
 export const ThemeContainer = styled('div', {

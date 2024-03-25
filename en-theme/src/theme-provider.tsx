@@ -1,4 +1,6 @@
 import React, { createContext, useContext, ReactNode, useEffect, useState, useMemo } from 'react';
+import { RadiusValue, DataRadiusProps } from './styles/types/radius.props';
+import { ScalingValue, DataScalingProps } from './styles/types/scaling.props';
 
 export interface ThemeProps {
   hasBackground?: boolean;
@@ -6,24 +8,8 @@ export interface ThemeProps {
   accentColor?: 'tomato' | 'red' | 'ruby' | 'crimson' | 'pink' | 'plum' | 'purple' | 'violet' | 'iris' | 'indigo' | 'blue' | 'cyan' | 'teal' | 'jade' | 'green' | 'grass' | 'orange' | 'brown' | 'sky' | 'mint' | 'lime' | 'yellow' | 'amber' | 'gold' | 'bronze' | 'gray';
   grayColor?: 'mauve' | 'slate' | 'sage' | 'olive' | 'sand' | 'gray' | 'auto';
   panelBackground?: 'solid' | 'translucent';
-  dataRadius?: 'none' | 'small' | 'medium' | 'large' | 'full';
-  dataScaling?: '90%' | '95%' | '100%' | '105%' | '110%';
-}
-
-export interface DataRadiusProps {
-  none: { '--radius-factor': number, '--radius-full': string, '--radius-thumb': string };
-  small: { '--radius-factor': number, '--radius-full': string, '--radius-thumb': string };
-  medium: { '--radius-factor': number, '--radius-full': string, '--radius-thumb': string };
-  large: { '--radius-factor': number, '--radius-full': string, '--radius-thumb': string };
-  full: { '--radius-factor': number, '--radius-full': string, '--radius-thumb': string };
-}
-
-export interface DataScalingProps {
-  '90%': { '--scaling': number };
-  '95%': { '--scaling': number };
-  '100%': { '--scaling': number };
-  '105%': { '--scaling': number };
-  '110%': { '--scaling': number };
+  dataRadius?: RadiusValue;
+  dataScaling?: ScalingValue;
 }
 
 const ThemeContext = createContext<{
