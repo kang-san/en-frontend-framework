@@ -291,12 +291,8 @@ export const ThemedContainer: React.FC<{ children: React.ReactNode }> = ({ child
 
   return (
     <ThemeContainer
-      dataRadius={{
-        [dataRadiusVariant]: themeState.dataRadius?.[dataRadiusVariant],
-      }}
-      dataScaling={{
-        [dataScalingVariant]: themeState.dataScaling?.[dataScalingVariant],
-      }}
+      dataRadius={dataRadiusVariant}
+      dataScaling={dataScalingVariant}
     >
       {children}
     </ThemeContainer>

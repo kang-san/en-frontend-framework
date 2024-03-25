@@ -34,6 +34,7 @@ export const BaseButton = styled('button', {
         zIndex: 0,
         backgroundImage: 'linear-gradient(to bottom, transparent 50%, $grayA4), linear-gradient(to bottom, transparent 50%, $accent9 80%)',
         boxShadow: '$classicTopShadow, inset 0 0 0 1px $accent9, $classicBottomShadow',
+        height: '--var(base-button-height)',
 
         '&::after': {
           content: '""',
@@ -73,7 +74,7 @@ export const BaseButton = styled('button', {
         '&:active:not(&[data-state="open"], &[data-disabled])': {
           backgroundColor: '$accent9',
           backgroundImage: 'linear-gradient($blackA1, transparent)',
-          paddingTop: '$classicActivePaddingTop',
+          paddingTop: 'var(--base-button-classic-active-padding-top)',
           boxShadow: '$classicActiveShadowFront, inset 0 0 0 1px $accent9, $classicActiveShadowBottom',
           
           '&::after': {
@@ -141,6 +142,7 @@ export const BaseButton = styled('button', {
       solid: {
         backgroundColor: '$accent9',
         color: '$accent9Contrast',
+        height: '--var(--base-button-height)',
 
         '@hover': {
           '&:hover': {
@@ -195,6 +197,7 @@ export const BaseButton = styled('button', {
       soft: {
         backgroundColor: '$accentA3',
         color: '$accentA11',
+        height: '--var(base-button-height)',
 
         '&:focus-visible': {
           outline: '2px solid $accent8',
@@ -228,6 +231,8 @@ export const BaseButton = styled('button', {
 
       ghost: {
         color: '$accentA11',
+        height: 'fit-content',
+        boxSizing: 'content-box',
 
         '@hover': {
           '&:hover': {
@@ -262,6 +267,7 @@ export const BaseButton = styled('button', {
       outline: {
         boxShadow: 'inset 0 0 0 1px $accentA8',
         color: '$accentA11',
+        height: '--var(base-button-height)',
 
         '@hover': {
           '&:hover': {
@@ -299,6 +305,7 @@ export const BaseButton = styled('button', {
         backgroundColor: '$colorSurfaceAccent',
         boxShadow: 'inset 0 0 0 1px $accentA7',
         color: '$accentA11',
+        height: '--var(base-button-height)',
 
         '@hover': {
           '&:hover': {
