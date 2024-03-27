@@ -1,15 +1,20 @@
 import React, { createContext, useContext, ReactNode, useEffect, useState, useMemo } from 'react';
-import { RadiusValue, DataRadiusProps } from './styles/types/radius.props';
-import { ScalingValue, DataScalingProps } from './styles/types/scaling.props';
+import { RadiusValue } from './styles/types/radius.props';
+import { ScalingValue } from './styles/types/scaling.props';
+
+export const appearance = ['inherit', 'light', 'dark'] as const;
+export const accentColors = ['tomato', 'red', 'ruby', 'crimson', 'pink', 'plum', 'purple', 'violet', 'iris', 'indigo', 'blue', 'cyan', 'teal', 'jade', 'green', 'grass', 'orange', 'brown', 'sky', 'mint', 'lime', 'yellow', 'amber', 'gold', 'bronze', 'gray'] as const;
+export const grayColors = ['mauve', 'slate', 'sage', 'olive', 'sand', 'gray', 'auto'] as const;
+export const panelBackground = ['solid', 'translucent'] as const;
 
 export interface ThemeProps {
-  hasBackground?: boolean;
-  appearance?: 'inherit' | 'light' | 'dark';
-  accentColor?: 'tomato' | 'red' | 'ruby' | 'crimson' | 'pink' | 'plum' | 'purple' | 'violet' | 'iris' | 'indigo' | 'blue' | 'cyan' | 'teal' | 'jade' | 'green' | 'grass' | 'orange' | 'brown' | 'sky' | 'mint' | 'lime' | 'yellow' | 'amber' | 'gold' | 'bronze' | 'gray';
-  grayColor?: 'mauve' | 'slate' | 'sage' | 'olive' | 'sand' | 'gray' | 'auto';
-  panelBackground?: 'solid' | 'translucent';
-  dataRadius?: RadiusValue;
-  dataScaling?: ScalingValue;
+  hasBackground: boolean;
+  appearance: typeof appearance[number];
+  accentColor: typeof accentColors[number];
+  grayColor: typeof grayColors[number];
+  panelBackground: typeof panelBackground[number];
+  dataRadius: typeof RadiusValue[number];
+  dataScaling: typeof ScalingValue[number];
 }
 
 const ThemeContext = createContext<{
@@ -29,30 +34,11 @@ export const useTheme = () => {
 };
 
 type ThemeProviderProps = {
-  defaultTheme?: ThemeProps;
+  defaultTheme: ThemeProps;
   children: ReactNode;
 };
 
-const defaultDataRadiusProps: DataRadiusProps = {
-  none: { '--radius-factor': 0, '--radius-full': '0px', '--radius-thumb': '0.5px' },
-  small: { '--radius-factor': 0.75, '--radius-full': '0px', '--radius-thumb': '0.5px' },
-  medium: { '--radius-factor': 1, '--radius-full': '0px', '--radius-thumb': '9999px' },
-  large: { '--radius-factor': 1.5, '--radius-full': '0px', '--radius-thumb': '9999px' },
-  full: { '--radius-factor': 1.5, '--radius-full': '9999px', '--radius-thumb': '9999px' },
-};
-
-const defaultDataScalingProps: DataScalingProps = {
-  '90%': { '--scaling': 0.9 },
-  '95%': { '--scaling': 0.95 },
-  '100%': { '--scaling': 1 },
-  '105%': { '--scaling': 1.05 },
-  '110%': { '--scaling': 1.1 },
-};
-
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({
-  defaultTheme = {},
-  children,
-}) => {
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ defaultTheme, children }: ThemeProviderProps) => {
   const [themeState, setThemeState] = useState<ThemeProps>(() => ({
     hasBackground: defaultTheme.hasBackground ?? true,
     appearance: defaultTheme.appearance ?? 'inherit',

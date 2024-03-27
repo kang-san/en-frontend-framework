@@ -1,13 +1,6 @@
 import { styled } from '@stitches/react';
 import { useTheme } from './theme-provider';
 import { theme } from './themes';
-import { DataRadiusProps } from './styles/types/radius.props';
-import { DataScalingProps } from './styles/types/scaling.props';
-
-interface ThemeContainerVariants {
-  dataScaling?: DataScalingProps;
-  dataRadius?: DataRadiusProps;
-}
 
 export const ThemeContainer = styled('div', {
   // variant tokens
@@ -279,15 +272,12 @@ export const ThemeContainer = styled('div', {
   },
 });
 
-// 수정된 부분
-type DataRadiusVariant = keyof ThemeContainerVariants['dataRadius'];
-type DataScalingVariant = keyof ThemeContainerVariants['dataScaling'];
 
 export const ThemedContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { themeState } = useTheme();
 
-  const dataRadiusVariant = themeState.dataRadius as DataRadiusVariant;
-  const dataScalingVariant = themeState.dataScaling as DataScalingVariant;
+  const dataRadiusVariant = themeState.dataRadius;
+  const dataScalingVariant = themeState.dataScaling;
 
   return (
     <ThemeContainer

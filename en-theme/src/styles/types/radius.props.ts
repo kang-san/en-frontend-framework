@@ -1,6 +1,6 @@
 // theme.types.ts
 
-export type RadiusValue = 'none' | 'small' | 'medium' | 'large' | 'full';
+export const RadiusValue = ['none' , 'small' , 'medium' , 'large' , 'full'] as const;
 
 export interface RadiusProps {
   [key: string]: {

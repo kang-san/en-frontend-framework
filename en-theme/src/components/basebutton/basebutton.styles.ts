@@ -1,9 +1,6 @@
 import { styled } from '@stitches/react';
 
-// .rt-BaseButton:where(:not(.rt-variant-ghost))와 .rt-BaseButton:where(.rt-variant-ghost)에 대한 스타일 정의가 없습니다.
-
-
-export const BaseButton = styled('button', {
+export const BaseButtonStyles = styled('button', {
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -16,14 +13,13 @@ export const BaseButton = styled('button', {
   width: '50px',
   height: '50px',
   borderRadius: '50%',
-  
+
   // 마진 속성 정의
   margin: '0',
   marginTop: '10px',
   marginRight: '20px',
   marginBottom: '10px',
   marginLeft: '20px',
-
 
   variants: {
     variant: {
@@ -34,7 +30,7 @@ export const BaseButton = styled('button', {
         zIndex: 0,
         backgroundImage: 'linear-gradient(to bottom, transparent 50%, $grayA4), linear-gradient(to bottom, transparent 50%, $accent9 80%)',
         boxShadow: '$classicTopShadow, inset 0 0 0 1px $accent9, $classicBottomShadow',
-        height: '--var(base-button-height)',
+        height: '$baseButtonHeight',
 
         '&::after': {
           content: '""',
@@ -74,9 +70,9 @@ export const BaseButton = styled('button', {
         '&:active:not(&[data-state="open"], &[data-disabled])': {
           backgroundColor: '$accent9',
           backgroundImage: 'linear-gradient($blackA1, transparent)',
-          paddingTop: 'var(--base-button-classic-active-padding-top)',
+          paddingTop: '$baseButtonClassicActivePaddingTop',
           boxShadow: '$classicActiveShadowFront, inset 0 0 0 1px $accent9, $classicActiveShadowBottom',
-          
+
           '&::after': {
             boxShadow: 'none',
             backgroundColor: 'inherit',
@@ -91,7 +87,7 @@ export const BaseButton = styled('button', {
           backgroundImage: 'none',
           boxShadow: '$classicDisabledShadow',
           filter: 'none',
-          
+
           '&::after': {
             boxShadow: 'none',
             backgroundColor: '$grayA2',
@@ -123,12 +119,12 @@ export const BaseButton = styled('button', {
             filter: '$classicHighContrastHoverFilter',
             '&::after': {
               backgroundColor: '$accent12',
-              backgroundImage: 'linear-gradient($blackA5, transparent, $whiteA2)',  
+              backgroundImage: 'linear-gradient($blackA5, transparent, $whiteA2)',
             },
           },
 
           '&:active:not(&[data-state="open"])': {
-            backgroundColor: '$accent12', 
+            backgroundColor: '$accent12',
             filter: '$classicHighContrastActiveFilter',
             boxShadow: '$classicActiveShadowFront, inset 0 0 0 1px $accent12, $classicActiveShadowBottom',
 
@@ -142,7 +138,7 @@ export const BaseButton = styled('button', {
       solid: {
         backgroundColor: '$accent9',
         color: '$accent9Contrast',
-        height: '--var(--base-button-height)',
+        height: '$baseButtonHeight',
 
         '@hover': {
           '&:hover': {
@@ -197,7 +193,7 @@ export const BaseButton = styled('button', {
       soft: {
         backgroundColor: '$accentA3',
         color: '$accentA11',
-        height: '--var(base-button-height)',
+        height: '$baseButtonHeight',
 
         '&:focus-visible': {
           outline: '2px solid $accent8',
@@ -267,7 +263,7 @@ export const BaseButton = styled('button', {
       outline: {
         boxShadow: 'inset 0 0 0 1px $accentA8',
         color: '$accentA11',
-        height: '--var(base-button-height)',
+        height: '$baseButtonHeight',
 
         '@hover': {
           '&:hover': {
@@ -305,7 +301,7 @@ export const BaseButton = styled('button', {
         backgroundColor: '$colorSurfaceAccent',
         boxShadow: 'inset 0 0 0 1px $accentA7',
         color: '$accentA11',
-        height: '--var(base-button-height)',
+        height: '$baseButtonHeight',
 
         '@hover': {
           '&:hover': {
@@ -342,8 +338,8 @@ export const BaseButton = styled('button', {
 
     size: {
       1: {
-        '--base-button-classic-active-padding-top': '1px',
-        '--base-button-height': '$space5',
+        baseButtonClassicActivePaddingTop: '1px',
+        baseButtonHeight: '$space5',
         borderRadius: 'max($radii$1, $radii$full)',
         width: '30px',
         height: '30px',
@@ -354,8 +350,8 @@ export const BaseButton = styled('button', {
         marginLeft: '10px',
       },
       2: {
-        '--base-button-classic-active-padding-top': '2px',
-        '--base-button-height': '$space6',
+        baseButtonClassicActivePaddingTop: '2px',
+        baseButtonHeight: '$space6',
         borderRadius: 'max($radii$2, $radii$full)',
         width: '40px',
         height: '40px',
@@ -366,8 +362,8 @@ export const BaseButton = styled('button', {
         marginLeft: '15px',
       },
       3: {
-        '--base-button-classic-active-padding-top': '2px',
-        '--base-button-height': '$space7',
+        baseButtonClassicActivePaddingTop: '2px',
+        baseButtonHeight: '$space7',
         borderRadius: 'max($radii$3, $radii$full)',
         width: '50px',
         height: '50px',
@@ -378,8 +374,8 @@ export const BaseButton = styled('button', {
         marginLeft: '20px',
       },
       4: {
-        '--base-button-classic-active-padding-top': '2px',
-        '--base-button-height': '$space8',
+        baseButtonClassicActivePaddingTop: '2px',
+        baseButtonHeight: '$space8',
         borderRadius: 'max($radii$4, $radii$full)',
         width: '60px',
         height: '60px',
@@ -388,6 +384,23 @@ export const BaseButton = styled('button', {
         marginRight: '25px',
         marginBottom: '20px',
         marginLeft: '25px',
+      },
+    },
+    radius: {
+      none: {
+        borderRadius: '0',
+      },
+      small: {
+        borderRadius: '$radii$1',
+      },
+      medium: {
+        borderRadius: '$radii$2',
+      },
+      large: {
+        borderRadius: '$radii$3',
+      },
+      full: {
+        borderRadius: '9999px',
       },
     },
   },
@@ -411,12 +424,12 @@ export const BaseButton = styled('button', {
       solidHighContrastActiveFilter: 'contrast(0.82) saturate(1.2) brightness(1.16)',
     },
     dark: {
-      classicAfterInset: '1px',  
+      classicAfterInset: '1px',
       classicTopShadow: 'inset 0 0 0 1px $whiteA2, inset 0 4px 2px -2px $whiteA3, inset 0 1px 1px $whiteA6, inset 0 -1px 1px $blackA6',
       classicBottomShadow: '0 0 transparent',
       classicDisabledShadow: 'inset 0 0 0 1px $grayA5, inset 0 4px 2px -2px $grayA2, inset 0 1px 1px $grayA5, inset 0 -1px 1px $blackA3, inset 0 0 0 1px $grayA2',
       classicActiveFilter: 'brightness(1.08)',
-      classicHighContrastHoverFilter: 'contrast(0.88) saturate(1.3) brightness(1.14)', 
+      classicHighContrastHoverFilter: 'contrast(0.88) saturate(1.3) brightness(1.14)',
       classicHighContrastActiveFilter: 'brightness(0.95) saturate(1.2)',
       solidActiveFilter: 'brightness(1.08)',
       solidHighContrastHoverFilter: 'contrast(0.88) saturate(1.3) brightness(1.18)',

@@ -1,4 +1,4 @@
-export type ScalingValue = '90%' | '95%' | '100%' | '105%' | '110%';
+export const ScalingValue = ['90%' , '95%' , '100%' , '105%' , '110%'] as const;
 
 export interface DataScalingProps {
   '90%': { '--scaling': number };
