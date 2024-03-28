@@ -1,5 +1,7 @@
+import React from 'react';
+
 import { PropDef } from '../../../src/styles/types/prop-def';
-import { ThemeProps, accentColors } from 'src/theme-provider';
+import { accentColors } from 'src/theme-provider';
 import { RadiusValue } from '../../styles/types/radius.props';
 
 const sizes = ['1', '2', '3', '4'] as const;
