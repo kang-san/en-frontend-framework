@@ -276,11 +276,19 @@ export const ThemeContainer = styled('div', {
 export const ThemedContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { themeState } = useTheme();
 
+  const hasBackgroundVariant = themeState.hasBackground;
+  const accentColorVariant = themeState.accentColor;
+  const grayColorVariant = themeState.grayColor;
+  const panelBackgroundVariant = themeState.panelBackground;
   const dataRadiusVariant = themeState.dataRadius;
   const dataScalingVariant = themeState.dataScaling;
 
   return (
     <ThemeContainer
+      hasBackground={hasBackgroundVariant}
+      accentColor={accentColorVariant}
+      grayColor={grayColorVariant}
+      panelBackground={panelBackgroundVariant}
       dataRadius={dataRadiusVariant}
       dataScaling={dataScalingVariant}
     >

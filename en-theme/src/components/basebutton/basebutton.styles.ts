@@ -12,7 +12,7 @@ export const BaseButtonStyles = styled('button', {
   // 기본 스타일 정의
   width: '50px',
   height: '50px',
-  borderRadius: '50%',
+  borderRadius: 'inherit',
 
   // 마진 속성 정의
   margin: '0',
@@ -340,7 +340,7 @@ export const BaseButtonStyles = styled('button', {
       1: {
         baseButtonClassicActivePaddingTop: '1px',
         baseButtonHeight: '$space5',
-        borderRadius: 'max($radii$1, $radii$full)',
+        borderRadius: 'max(var(--radius-1), var(--radius-full))',
         width: '30px',
         height: '30px',
         margin: '0',
@@ -352,7 +352,7 @@ export const BaseButtonStyles = styled('button', {
       2: {
         baseButtonClassicActivePaddingTop: '2px',
         baseButtonHeight: '$space6',
-        borderRadius: 'max($radii$2, $radii$full)',
+        borderRadius: 'max(var(--radius-2), var(--radius-full))',
         width: '40px',
         height: '40px',
         margin: '0',
@@ -364,7 +364,7 @@ export const BaseButtonStyles = styled('button', {
       3: {
         baseButtonClassicActivePaddingTop: '2px',
         baseButtonHeight: '$space7',
-        borderRadius: 'max($radii$3, $radii$full)',
+        borderRadius: 'max(var(--radius-3), var(--radius-full))',
         width: '50px',
         height: '50px',
         margin: '0',
@@ -376,7 +376,7 @@ export const BaseButtonStyles = styled('button', {
       4: {
         baseButtonClassicActivePaddingTop: '2px',
         baseButtonHeight: '$space8',
-        borderRadius: 'max($radii$4, $radii$full)',
+        borderRadius: 'max(var(--radius-4), var(--radius-full))',
         width: '60px',
         height: '60px',
         margin: '0',
@@ -384,23 +384,6 @@ export const BaseButtonStyles = styled('button', {
         marginRight: '25px',
         marginBottom: '20px',
         marginLeft: '25px',
-      },
-    },
-    radius: {
-      none: {
-        borderRadius: '0',
-      },
-      small: {
-        borderRadius: '$radii$1',
-      },
-      medium: {
-        borderRadius: '$radii$2',
-      },
-      large: {
-        borderRadius: '$radii$3',
-      },
-      full: {
-        borderRadius: '9999px',
       },
     },
   },

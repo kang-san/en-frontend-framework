@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from './theme-provider';
 import { ThemedContainer } from './theme-container';
-import { GlobalStyles } from '../src/themes/global-styles';
+import { globalStyles } from '../src/themes/global-styles';
 import { useThemeChange } from './theme-change-hook';
 import { ThemeProps } from './theme-provider';
 
@@ -17,10 +17,10 @@ const defaultTheme: ThemeProps = {
 
 export const Theme: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   useThemeChange();
-
+  globalStyles();
+  
   return (
     <ThemeProvider defaultTheme={defaultTheme}>
-      <GlobalStyles />
       <ThemedContainer>{children}</ThemedContainer>
     </ThemeProvider>
   );

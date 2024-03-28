@@ -1,34 +1,42 @@
-// global-styles.ts
-import React, { useMemo, createElement } from 'react';
 import { globalCss } from '@stitches/react';
-import { useTheme, ThemeProps, DataRadiusProps, DataScalingProps } from '../theme-provider';
-import { ThemeContainer } from '../theme-container';
+import { useTheme } from '../theme-provider';
+import { RadiusValue } from '../styles/types/radius.props';
+import { ScalingValue } from '../styles/types/scaling.props';
 
-const calculateCssVariables = (dataScaling: ThemeProps['dataScaling'], dataRadius: ThemeProps['dataRadius']) => {
-  const variables: Record<string, string> = {};
+const { themeState } = useTheme();
 
-  const radiusBaseFactors = [3, 4, 6, 8, 12, 16];
-  const radiusKeys = ['--radius-1', '--radius-2', '--radius-3', '--radius-4', '--radius-5', '--radius-6'];
+interface CalRadiusProp {
+  dataRadius: typeof RadiusValue[number];
+  dataScaling: typeof ScalingValue[number];
+}
 
-  radiusKeys.forEach((key, index) => {
-    const scalingFactor = dataScaling ? ThemeContainer.variants.dataScaling[dataScaling]['--scaling'] : 1;
-    const radiusFactor = dataRadius ? ThemeContainer.variants.dataRadius[dataRadius]['--radius-factor'] : 1;
-    variables[key] = `calc(${radiusBaseFactors[index]}px * ${scalingFactor} * ${radiusFactor})`;
-  });
+const dataRadius = themeState.dataRadius;
+const dataScaling = themeState.dataScaling;
 
-  return variables;
+export const globalStyles = globalCss({
+  ':root': {
+    '--radius-1': ({ dataRadius, dataScaling }: CalRadiusProp) => `calc(3px * ${dataScaling} * ${getRadiusFactor(dataRadius)})`,
+    '--radius-2': ({ dataRadius, dataScaling }: CalRadiusProp) => `calc(4px * ${dataScaling} * ${getRadiusFactor(dataRadius)})`,
+    '--radius-3': ({ dataRadius, dataScaling }: CalRadiusProp) => `calc(6px * ${dataScaling} * ${getRadiusFactor(dataRadius)})`,
+    '--radius-4': ({ dataRadius, dataScaling }: CalRadiusProp) => `calc(8px * ${dataScaling} * ${getRadiusFactor(dataRadius)})`,
+    '--radius-5': ({ dataRadius, dataScaling }: CalRadiusProp) => `calc(12px * ${dataScaling} * ${getRadiusFactor(dataRadius)})`,
+    '--radius-6': ({ dataRadius, dataScaling }: CalRadiusProp) => `calc(16px * ${dataScaling} * ${getRadiusFactor(dataRadius)})`,
+  },
+});
+
+const getRadiusFactor = (dataRadius: typeof RadiusValue[number]) => {
+  switch (dataRadius) {
+    case 'none':
+      return 0;
+    case 'small':
+      return 0.75;
+    case 'medium':
+      return 1;
+    case 'large':
+      return 1.5;
+    case 'full':
+      return 1.5;
+  }
 };
 
-export const GlobalStyles: React.FC = () => {
-  const { themeState } = useTheme();
-  const cssVariables = useMemo(
-    () => calculateCssVariables(themeState.dataScaling, themeState.dataRadius),
-    [themeState.dataScaling, themeState.dataRadius]
-  );
-
-  const globalStyles = globalCss({
-    ':root': cssVariables,
-  });
-
-  return createElement('div', { className: globalStyles() });
-};
+export default globalStyles;
